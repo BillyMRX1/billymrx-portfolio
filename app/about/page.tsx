@@ -1,3 +1,5 @@
+import Skills from "@/components/Skills";
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen pt-28 px-8 max-w-3xl mx-auto text-gray-300 text-center">
@@ -26,6 +28,7 @@ export default function AboutPage() {
         I'm obsessed with clean design, automation, and tools that feel like
         sci-fi. Let’s build something cool.
       </p>
+      <Skills />
     </div>
   );
 }

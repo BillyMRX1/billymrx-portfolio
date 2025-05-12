@@ -38,6 +38,9 @@ importers:
       react-hook-form:
         specifier: ^7.56.3
         version: 7.56.3(react@19.1.0)
+      react-parallax-tilt:
+        specifier: ^1.7.295
+        version: 1.7.295(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-powerglitch:
         specifier: ^1.1.0
         version: 1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1369,6 +1372,12 @@ packages:
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
+
+  react-parallax-tilt@1.7.295:
+    resolution: {integrity: sha512-RAgyM0Q3aeefZfBdezAoK/fEeUtD5eB1OQ0T2TCwGvDLDuKVIYPurzoknNZpa5KbMxxgUCB9keCUNU2NypyAWw==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-powerglitch@1.1.0:
     resolution: {integrity: sha512-ueYw9dZFszBnchxbTOBJunvoWhVDoValhjDBjuZTXl3Hnj3DdwykcrS5Hdz4HDapnjveERMWeQo78OS5hmwF9A==}
@@ -3355,6 +3364,11 @@ snapshots:
   react-hook-form@7.56.3(react@19.1.0):
     dependencies:
       react: 19.1.0
+
+  react-parallax-tilt@1.7.295(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   react-powerglitch@1.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:

@@ -15,18 +15,16 @@ export default function AboutPage() {
       </p>
 
       <p className="mb-4">
-        I'm <span className="text-neon font-semibold">BillyMRX</span> — a
-        passionate developer who started out building Android apps and has now
-        transitioned into AI engineering.
+        I'm <span className="text-neon font-semibold">Brilian Ade Putra</span> — a passionate developer with over 3 years of experience building high-performance mobile applications using Kotlin, Jetpack Compose, and Flutter. I’ve worked on a variety of Android apps across industries including media, construction, and enterprise solutions.
       </p>
       <p className="mb-4">
-        I’ve developed mobile apps using Kotlin, Jetpack Compose, and Flutter,
-        and now I build AI-driven experiences with OpenAI, Next.js, FastAPI, and
-        more.
+        I currently work as an <span className="text-neon font-semibold">AI Engineer at Honda</span>, where I’m exploring the intersection of software engineering and artificial intelligence to develop smart, human-centered systems.
+      </p>
+      <p className="mb-4">
+        My career spans native and cross-platform development, CI/CD automation, and backend integration, with hands-on experience using modern stacks like Next.js, FastAPI, and cloud-based infrastructure.
       </p>
       <p>
-        I'm obsessed with clean design, automation, and tools that feel like
-        sci-fi. Let’s build something cool.
+        I'm obsessed with futuristic UI, AI-powered products, and automation. Whether it's crafting sleek mobile interfaces or building intelligent backend systems, I'm always looking to push boundaries and bring ideas to life.
       </p>
       <Skills />
     </div>

@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/experience", label: "Experience" },
   { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Navbar() {
@@ -24,7 +25,10 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <div className="sm:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle Menu"
+          >
             {menuOpen ? (
               <XMarkIcon className="h-6 w-6 text-neon" />
             ) : (

@@ -1,0 +1,35 @@
+import { getMediumPosts } from "@/lib/getMediumPosts";
+
+export default async function BlogPage() {
+  const posts = await getMediumPosts();
+
+  return (
+    <div className="min-h-screen pt-28 px-4 sm:px-6 md:px-8 max-w-4xl mx-auto text-gray-300">
+      <h1 className="text-3xl sm:text-4xl font-bold text-neon mb-6 text-center">
+        Blog
+      </h1>
+
+      <ul className="space-y-6">
+        {posts.map((post, idx) => (
+          <li
+            key={idx}
+            className="border border-neon rounded p-4 hover:shadow-[0_0_10px_#00ffffaa] transition"
+          >
+            <a
+              href={post.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xl font-semibold text-neon hover:underline"
+            >
+              {post.title}
+            </a>
+            <p className="text-sm text-gray-400 mt-1">
+              {new Date(post.pubDate).toLocaleDateString()}
+            </p>
+            <p className="mt-2 text-sm text-gray-300">{post.contentSnippet}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

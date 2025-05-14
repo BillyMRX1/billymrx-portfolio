@@ -1,3 +1,6 @@
+export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+
 import { getMediumPosts } from "@/lib/getMediumPosts";
 
 export default async function BlogPage() {

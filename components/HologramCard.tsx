@@ -1,50 +1,25 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Float, Html } from "@react-three/drei";
+import Link from "next/link";
 
-export default function HologramCard({
-  title,
-  description,
-  link,
-}: {
+interface HologramCardProps {
   title: string;
   description: string;
   link: string;
-}) {
+}
+
+export default function HologramCard({ title, description, link }: HologramCardProps) {
   return (
-    <div className="w-full h-64 border border-neon rounded overflow-hidden bg-black/50">
-      <Canvas>
-        <ambientLight intensity={0.5} />
-        <directionalLight color="#00ffff" position={[0, 0, 5]} intensity={1} />
-
-        <Float floatIntensity={1.5} rotationIntensity={1.2} speed={2}>
-          <Html
-            transform
-            occlude
-            distanceFactor={1.5}
-            position={[0, 0, 0]}
-            scale={8}
-            pointerEvents="auto" // 👈 important fix
-          >
-            <a
-              href={link}
-              target="_blank"
-              className="block w-72 text-center bg-black/70 border border-cyan-500 rounded p-4 text-neon shadow-neon hover:brightness-125 transition"
-            >
-              <h2 className="text-xl font-semibold">{title}</h2>
-              <p className="text-sm mt-1">{description}</p>
-            </a>
-          </Html>
-        </Float>
-
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={2}
-        />
-      </Canvas>
-    </div>
+    <Link
+      href={link}
+      className="group block border border-neon bg-gradient-to-br from-black/50 to-black/80 rounded-lg p-6 shadow-[0_0_12px_#00ffff50] transition duration-300 hover:shadow-[0_0_20px_#00ffffaa] hover:scale-[1.03]"
+    >
+      <h3 className="text-xl font-semibold text-neon group-hover:text-white transition-colors duration-300">
+        {title}
+      </h3>
+      <p className="mt-2 text-gray-300 group-hover:text-neon transition-colors duration-300">
+        {description}
+      </p>
+    </Link>
   );
 }

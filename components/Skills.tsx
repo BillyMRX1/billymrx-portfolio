@@ -15,9 +15,8 @@ export default function Skills() {
     ],
     "AI & Backend": [
       { name: "Python", icon: "/icons/python.svg" },
-      { name: "OpenAI API", icon: "/icons/openai.svg" },
       { name: "NodeJS", icon: "/icons/nodejs.svg" },
-      { name: "Express.js", icon: "/icons/express.svg" },
+      { name: "Express.js", icon: "/icons/express.png" },
     ],
     "Web & Frontend": [
       { name: "Next.js", icon: "/icons/nextjs.svg" },

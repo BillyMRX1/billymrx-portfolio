@@ -42,8 +42,8 @@ export default function ExperiencePage() {
   ];
 
   return (
-    <section className="min-h-screen pt-28 px-8 max-w-5xl mx-auto">
-      <h1 className="text-4xl font-bold text-neon mb-10 text-center">Experience</h1>
+    <section className="min-h-screen pt-28 px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
+      <h1 className="text-3xl sm:text-4xl font-bold text-neon mb-10 text-center">Experience</h1>
 
       <div className="space-y-8">
         {experiences.map((exp, idx) => (
@@ -55,10 +55,10 @@ export default function ExperiencePage() {
             transition={{ duration: 0.5, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-semibold text-neon">{exp.title}</h3>
-            <h4 className="text-gray-400 font-medium">{exp.company}</h4>
-            <p className="text-sm text-gray-500 italic mb-2">{exp.date}</p>
-            <p className="text-gray-300">{exp.description}</p>
+            <h3 className="text-lg sm:text-xl font-semibold text-neon">{exp.title}</h3>
+            <h4 className="text-sm sm:text-base text-gray-400 font-medium">{exp.company}</h4>
+            <p className="text-xs sm:text-sm text-gray-500 italic mb-2">{exp.date}</p>
+            <p className="text-sm text-gray-300">{exp.description}</p>
           </motion.div>
         ))}
       </div>

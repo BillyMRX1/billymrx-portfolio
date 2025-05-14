@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@headlessui/react": "^2.2.3",
+    "@heroicons/react": "^2.2.0",
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
     "framer-motion": "^12.10.5",
@@ -34,5 +36,6 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
-  }
+  },
+  "packageManager": "pnpm@10.10.0+sha1.f657bc37aa5e08da2ecff3877fe3bbb4b13703ba"
 }

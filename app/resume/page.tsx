@@ -2,25 +2,28 @@
 
 export default function ResumePage() {
   return (
-    <div className="min-h-screen pt-28 px-8 text-center">
-      <h1 className="text-4xl font-bold text-neon mb-6">Resume</h1>
+    <div className="min-h-screen pt-28 px-4 sm:px-6 md:px-8 max-w-5xl mx-auto text-center">
+      <h1 className="text-3xl sm:text-4xl font-bold text-neon mb-6">Resume</h1>
+
+      <p className="text-sm text-gray-400 mb-6">
+        Download my resume or preview below.
+      </p>
 
       <a
         href="/resume.pdf"
-        download
-        className="inline-block px-6 py-3 rounded border border-neon text-neon font-semibold hover:bg-neon hover:text-black transition"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block px-6 py-3 border border-neon text-neon rounded-md hover:bg-neon hover:text-black transition"
       >
-        Download Resume
+        View Resume PDF
       </a>
 
-      {/* Optional: Embed preview */}
-      <div className="mt-10">
+      <div className="mt-8 w-full aspect-[3/4]">
         <iframe
           src="/resume.pdf"
-          width="100%"
-          height="600"
-          className="rounded border border-neon"
-        ></iframe>
+          className="w-full h-full rounded border border-neon"
+          title="BillyMRX Resume"
+        />
       </div>
     </div>
   );

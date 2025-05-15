@@ -6,7 +6,7 @@ import TerminalLauncher from "@/components/TerminalLauncher";
 import BackToTop from "@/components/BackToTop";
 
 export const metadata: Metadata = {
-  title: "BillyMRX | Cyberpunk Portfolio",
+  title: "BillyMRX Portfolio",
   description: "Android Developer turned AI Engineer",
 };
 

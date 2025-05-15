@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import HologramCard from './HologramCard';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import HologramCard from "./HologramCard";
 
 export type Project = {
   title: string;
   description: string;
-  link: string;
+  link?: string;
   category: string;
+  type?: "personal" | "work" | "freelance" | "academic";
 };
 
 export default function ProjectsClient({
@@ -50,14 +51,15 @@ export default function ProjectsClient({
           {projects.map((project, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.03, boxShadow: '0 0 20px #00ffffaa' }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              whileHover={{ scale: 1.03, boxShadow: "0 0 20px #00ffffaa" }}
+              transition={{ type: "spring", stiffness: 300 }}
               className="rounded-md"
             >
               <HologramCard
                 title={project.title}
                 description={project.description}
                 link={project.link}
+                type={project.type}
               />
             </motion.div>
           ))}

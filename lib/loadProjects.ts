@@ -27,6 +27,7 @@ export async function getAllProjects(): Promise<Record<string, Project[]>> {
         description: data.description,
         link: data.link,
         category: data.category,
+        type: data.type,
       };
     });
 

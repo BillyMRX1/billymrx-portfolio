@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import ClientParticles from "@/components/ClientParticles";
 import Navbar from "@/components/Navbar";
 import TerminalLauncher from "@/components/TerminalLauncher";
+import BackToTop from "@/components/BackToTop";
 
 export const metadata: Metadata = {
   title: "BillyMRX | Cyberpunk Portfolio",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <ClientParticles />
         <Navbar />
         {children}
+        <BackToTop />
       </body>
     </html>
   );

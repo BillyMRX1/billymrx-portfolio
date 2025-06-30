@@ -1,4 +1,4 @@
-name: Deploy to Vercel
+name: Deploy to Private Server
 
 on:
   push:
@@ -21,18 +21,21 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
-
-      - name: Pull Vercel Environment
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
       - name: Install dependencies
         run: pnpm install
 
       - name: Build Project
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: pnpm build
 
-      - name: Deploy to Vercel
+      - name: Deploy to Server
         if: github.ref == 'refs/heads/main'
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: 157.66.34.48
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/billymrx-portfolio
+            rsync -avz --delete .next public package.json pnpm-lock.yaml /var/www/billymrx-portfolio
+            pnpm install --prod
+            pm2 restart billymrx-portfolio

@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    image: billymrx/portfolio-local
+    ports:
+      - "80:3000"
+    restart: always

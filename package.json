@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "jest",
     "docker:build": "docker build -t billymrx-portfolio .",
-    "docker:run": "docker run -p 3000:3000 billymrx-portfolio"
+    "docker:run": "docker run -d -p 3000:3000 --name billymrx-portfolio billymrx-portfolio"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

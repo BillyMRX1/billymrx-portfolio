@@ -19,7 +19,3 @@ jobs:
           script: |
             cd billymrx-portfolio
             git pull origin
-            npm install -g pnpm
-            pnpm run docker:build
-            pnpm run docker:run
-          timeout: 1200s

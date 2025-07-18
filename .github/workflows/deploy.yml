@@ -22,3 +22,4 @@ jobs:
             npm install -g pnpm
             pnpm run docker:build
             pnpm run docker:run
+          timeout: 1200 

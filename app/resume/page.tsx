@@ -43,7 +43,7 @@ export default function ResumePage() {
 
       <div className="mt-8 w-full aspect-[3/4]">
         <iframe
-          src="/resume.pdf"
+          src="/api/resume"
           className="w-full h-full rounded border border-neon"
           title="BillyMRX Resume"
         />

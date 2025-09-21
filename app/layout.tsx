@@ -1,9 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import ClientParticles from "@/components/ClientParticles";
 import Navbar from "@/components/Navbar";
-import TerminalLauncher from "@/components/TerminalLauncher";
-import BackToTop from "@/components/BackToTop";
+import ShellEnhancements from "@/components/ShellEnhancements";
 
 const siteUrl = "https://billymrx.vercel.app";
 
@@ -134,11 +132,9 @@ export default function RootLayout({
         />
       </head>
       <body className="relative bg-black text-white font-sans">
-        <TerminalLauncher />
-        <ClientParticles />
+        <ShellEnhancements />
         <Navbar />
         {children}
-        <BackToTop />
       </body>
     </html>
   );

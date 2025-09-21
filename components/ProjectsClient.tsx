@@ -1,43 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HologramCard from "./HologramCard";
-
-export type Project = {
-  title: string;
-  description: string;
-  link?: string;
-  category: string;
-  type?: "personal" | "work" | "freelance" | "academic";
-};
+import type { Project } from "@/lib/loadProjects";
 
 export default function ProjectsClient({
   allProjects,
 }: {
   allProjects: Record<string, Project[]>;
 }) {
-  const categories = Object.keys(allProjects);
-  const [activeTab, setActiveTab] = useState<string>(categories[0]);
-  const projects = allProjects[activeTab];
+  const categories = useMemo(() => Object.keys(allProjects), [allProjects]);
+  const [activeTab, setActiveTab] = useState<string>(categories[0] ?? "");
+  const projects = allProjects[activeTab] ?? [];
 
   return (
     <>
-      <div className="mb-6 flex gap-4 flex-wrap justify-center">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveTab(category)}
-            className={`px-4 py-2 rounded border transition ${
-              activeTab === category
-                ? "border-neon text-neon shadow-[0_0_12px_#00ffff]"
-                : "border-gray-600 text-gray-400"
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      {categories.length > 0 && (
+        <div className="mb-6 flex gap-4 flex-wrap justify-center">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveTab(category)}
+              className={`px-4 py-2 rounded border transition ${
+                activeTab === category
+                  ? "border-neon text-neon shadow-[0_0_12px_#00ffff]"
+                  : "border-gray-600 text-gray-400"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      )}
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -48,21 +43,27 @@ export default function ProjectsClient({
           transition={{ duration: 0.3 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {projects.map((project, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.03, boxShadow: "0 0 20px #00ffffaa" }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="rounded-md"
-            >
-              <HologramCard
-                title={project.title}
-                description={project.description}
-                link={project.link}
-                type={project.type}
-              />
-            </motion.div>
-          ))}
+          {projects.length === 0 ? (
+            <p className="col-span-full text-center text-gray-400">
+              Projects will be added soon.
+            </p>
+          ) : (
+            projects.map((project) => (
+              <motion.div
+                key={project.title}
+                whileHover={{ scale: 1.03, boxShadow: "0 0 20px #00ffffaa" }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="rounded-md"
+              >
+                <HologramCard
+                  title={project.title}
+                  description={project.description}
+                  link={project.link}
+                  type={project.type}
+                />
+              </motion.div>
+            ))
+          )}
         </motion.div>
       </AnimatePresence>
     </>

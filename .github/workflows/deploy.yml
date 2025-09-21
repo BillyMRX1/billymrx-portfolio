@@ -13,9 +13,11 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
-          passphrase: ${{ secrets.VPS_SSH_KEY }}
           username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PASSWORD }}
+          key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd billymrx-portfolio
-            git pull origin
+            set -e
+            cd ~/billymrx-portfolio
+            git pull origin main
+            chmod +x scripts/deploy.sh
+            ./scripts/deploy.sh

@@ -29,8 +29,31 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Docker Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Use the provided script to build and redeploy the production container locally or on your server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+./scripts/deploy.sh
+```
+
+The script will:
+
+- build the Docker image defined in `Dockerfile`
+- stop and remove any existing container with the same name
+- start a fresh container that exposes port `3000`
+
+You can override defaults with environment variables:
+
+```bash
+IMAGE_NAME=my-portfolio HOST_PORT=8080 ./scripts/deploy.sh
+```
+
+The script requires Docker to be installed and available in `PATH`.
+
+### GitHub Actions
+
+The workflow in `.github/workflows/deploy.yml` connects to your VPS via SSH (using the
+`VPS_HOST`, `VPS_USERNAME`, and `VPS_SSH_KEY` secrets) and runs `scripts/deploy.sh` after
+pulling the latest changes on the `main` branch. Update the remote path (`~/billymrx-portfolio`)
+or environment variables in the workflow if your server layout differs.

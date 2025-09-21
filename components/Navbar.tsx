@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/about", label: "About" },
@@ -15,6 +16,14 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-sm border-b border-neon">
@@ -43,7 +52,12 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-gray-300 hover:text-neon transition"
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={`transition ${
+                isActive(link.href)
+                  ? "text-neon"
+                  : "text-gray-300 hover:text-neon"
+              }`}
             >
               {link.label}
             </Link>
@@ -59,7 +73,12 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-300 hover:text-neon transition"
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className={`transition ${
+                  isActive(link.href)
+                    ? "text-neon"
+                    : "text-gray-300 hover:text-neon"
+                }`}
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}

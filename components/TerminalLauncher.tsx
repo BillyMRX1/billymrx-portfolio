@@ -1,7 +1,11 @@
 "use client";
 
-import Terminal from "@/components/Terminal";
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
+
+const Terminal = dynamic(() => import("@/components/Terminal"), {
+  ssr: false,
+});
 
 export default function TerminalLauncher() {
   const [showTerminal, setShowTerminal] = useState(false);

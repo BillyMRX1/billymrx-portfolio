@@ -1,38 +1,44 @@
 "use client";
 
+import Image from "next/image";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 
-export default function Skills() {
-  const groupedSkills = {
-    "Android & Mobile": [
-      { name: "Kotlin", icon: "/icons/kotlin.svg" },
-      { name: "Jetpack Compose", icon: "/icons/compose.svg" },
-      { name: "Java", icon: "/icons/java.svg" },
-      { name: "Flutter", icon: "/icons/flutter.svg" },
-      { name: "Dart", icon: "/icons/dart.svg" },
-      { name: "Swift", icon: "/icons/swift.svg" },
-    ],
-    "AI & Backend": [
-      { name: "Python", icon: "/icons/python.svg" },
-      { name: "NodeJS", icon: "/icons/nodejs.svg" },
-      { name: "Express.js", icon: "/icons/express.png" },
-    ],
-    "Web & Frontend": [
-      { name: "Next.js", icon: "/icons/nextjs.svg" },
-      { name: "React Native", icon: "/icons/react.svg" },
-    ],
-    "Database": [
-      { name: "Firebase", icon: "/icons/firebase.svg" },
-      { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
-      { name: "MongoDB", icon: "/icons/mongodb.svg" },
-    ],
-    "DevOps & Tools": [
-      { name: "GitHub Actions", icon: "/icons/github.svg" },
-      { name: "GitLab CI", icon: "/icons/gitlab.svg" },
-    ],
-  };   
+type Skill = {
+  name: string;
+  icon: string;
+};
 
+const groupedSkills = {
+  "Android & Mobile": [
+    { name: "Kotlin", icon: "/icons/kotlin.svg" },
+    { name: "Jetpack Compose", icon: "/icons/compose.svg" },
+    { name: "Java", icon: "/icons/java.svg" },
+    { name: "Flutter", icon: "/icons/flutter.svg" },
+    { name: "Dart", icon: "/icons/dart.svg" },
+    { name: "Swift", icon: "/icons/swift.svg" },
+  ],
+  "AI & Backend": [
+    { name: "Python", icon: "/icons/python.svg" },
+    { name: "NodeJS", icon: "/icons/nodejs.svg" },
+    { name: "Express.js", icon: "/icons/express.png" },
+  ],
+  "Web & Frontend": [
+    { name: "Next.js", icon: "/icons/nextjs.svg" },
+    { name: "React Native", icon: "/icons/react.svg" },
+  ],
+  Database: [
+    { name: "Firebase", icon: "/icons/firebase.svg" },
+    { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
+    { name: "MongoDB", icon: "/icons/mongodb.svg" },
+  ],
+  "DevOps & Tools": [
+    { name: "GitHub Actions", icon: "/icons/github.svg" },
+    { name: "GitLab CI", icon: "/icons/gitlab.svg" },
+  ],
+} satisfies Record<string, Skill[]>;
+
+export default function Skills() {
   return (
     <section className="pt-20 px-8 max-w-5xl mx-auto text-center">
       <h2 className="text-3xl font-bold text-neon mb-6">Skills & Tech</h2>
@@ -63,7 +69,14 @@ export default function Skills() {
                   className="flex flex-col items-center justify-center h-32 gap-2 border border-neon bg-black/30 p-4 rounded-md transition-all duration-300 shadow-[0_0_12px_#00ffff80] hover:shadow-[0_0_20px_#00ffffaa]"
                   whileHover={{ scale: 1.06 }}
                 >
-                  <img src={skill.icon} alt={skill.name} className="w-10 h-10" />
+                  <Image
+                    src={skill.icon}
+                    alt={skill.name}
+                    width={40}
+                    height={40}
+                    sizes="40px"
+                    className="w-10 h-10"
+                  />
                   <span className="text-sm text-neon">{skill.name}</span>
                 </motion.div>
               </Tilt>

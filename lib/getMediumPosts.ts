@@ -7,16 +7,21 @@ export interface BlogPost {
   contentSnippet: string;
 }
 
-export async function getMediumPosts(): Promise<BlogPost[]> {
-  const parser = new Parser();
-  const feed = await parser.parseURL(
-    "https://medium.com/feed/@brilianadeputra"
-  );
+const parser = new Parser();
+const mediumFeedUrl = "https://medium.com/feed/@brilianadeputra";
 
-  return feed.items.map((item) => ({
-    title: item.title ?? "No title",
-    link: item.link ?? "#",
-    pubDate: item.pubDate ?? "",
-    contentSnippet: item.contentSnippet ?? "",
-  }));
+export async function getMediumPosts(): Promise<BlogPost[]> {
+  try {
+    const feed = await parser.parseURL(mediumFeedUrl);
+
+    return (feed.items ?? []).map((item) => ({
+      title: item.title ?? "No title",
+      link: item.link ?? "#",
+      pubDate: item.pubDate ?? "",
+      contentSnippet: item.contentSnippet ?? "",
+    }));
+  } catch (error) {
+    console.error("Failed to fetch Medium posts", error);
+    return [];
+  }
 }

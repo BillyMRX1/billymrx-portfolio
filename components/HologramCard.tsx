@@ -1,10 +1,12 @@
 "use client";
 
+import type { ProjectType } from "@/lib/loadProjects";
+
 interface HologramCardProps {
   title: string;
   description: string;
   link?: string;
-  type?: "personal" | "work" | "freelance" | "academic";
+  type?: ProjectType;
 }
 
 export default function HologramCard({ title, description, link, type }: HologramCardProps) {

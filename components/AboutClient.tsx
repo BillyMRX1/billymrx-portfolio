@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Skills from "@/components/Skills";
 import { FaGithub, FaLinkedin, FaGlobe } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
@@ -8,9 +9,13 @@ export default function AboutClient() {
   return (
     <div className="min-h-screen pt-28 px-4 sm:px-6 md:px-8 max-w-4xl mx-auto text-gray-300 text-center">
       {/* 🧑 Avatar */}
-      <img
+      <Image
         src="/avatar.jpg"
-        alt="Profile Picture"
+        alt="Profile picture"
+        width={128}
+        height={128}
+        priority
+        sizes="(max-width: 640px) 7rem, 8rem"
         className="mx-auto w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-neon shadow-[0_0_20px_#00ffff] mb-6"
       />
 

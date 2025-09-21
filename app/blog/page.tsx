@@ -2,6 +2,30 @@ export const revalidate = 3600;
 export const dynamic = "force-dynamic";
 
 import { getMediumPosts } from "@/lib/getMediumPosts";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Read latest articles and insights by Brilian Ade Putra (Billy) on AI engineering, mobile development, and software engineering. Medium posts about technology and career growth.",
+  keywords: [
+    "Billy Blog",
+    "AI Engineering Blog",
+    "Mobile Development Articles",
+    "Software Engineering Insights",
+    "Technology Blog",
+    "Medium Articles",
+    "Android Development Blog",
+    "Career Growth Articles"
+  ],
+  openGraph: {
+    title: "Blog - Brilian Ade Putra (Billy) Tech Articles & Insights",
+    description: "Read the latest tech articles and professional insights from AI Engineer Brilian Ade Putra, covering mobile development, AI, and software engineering.",
+  },
+  twitter: {
+    title: "Blog - Brilian Ade Putra (Billy) Tech Articles & Insights",
+    description: "Read the latest tech articles and professional insights from AI Engineer Brilian Ade Putra, covering mobile development, AI, and software engineering.",
+  },
+};
 
 export default async function BlogPage() {
   const posts = await getMediumPosts();

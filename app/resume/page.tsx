@@ -1,4 +1,27 @@
-"use client";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description: "Download Brilian Ade Putra (Billy)'s resume - AI Engineer at Honda Japan with expertise in mobile development, AI solutions, and full-stack applications. Available for hire in Tokyo.",
+  keywords: [
+    "Billy Resume",
+    "AI Engineer CV",
+    "Mobile Developer Resume",
+    "Software Engineer CV",
+    "Download Resume",
+    "Hire AI Engineer",
+    "Tokyo Developer CV",
+    "Honda Engineer Resume"
+  ],
+  openGraph: {
+    title: "Resume - Brilian Ade Putra (Billy) AI Engineer Available for Hire",
+    description: "Download the complete resume of AI Engineer Brilian Ade Putra. Extensive experience in mobile development and AI solutions. Open to opportunities in Tokyo.",
+  },
+  twitter: {
+    title: "Resume - Brilian Ade Putra (Billy) AI Engineer Available for Hire",
+    description: "Download the complete resume of AI Engineer Brilian Ade Putra. Extensive experience in mobile development and AI solutions. Open to opportunities in Tokyo.",
+  },
+};
 
 export default function ResumePage() {
   return (

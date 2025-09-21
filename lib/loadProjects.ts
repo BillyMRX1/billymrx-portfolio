@@ -2,11 +2,14 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
+export type ProjectType = "personal" | "work" | "freelance" | "academic";
+
 export type Project = {
   title: string;
   description: string;
-  link: string;
+  link?: string;
   category: string;
+  type?: ProjectType;
 };
 
 export async function getAllProjects(): Promise<Record<string, Project[]>> {
@@ -19,17 +22,33 @@ export async function getAllProjects(): Promise<Record<string, Project[]>> {
     const dir = path.join(basePath, category);
     const files = fs.readdirSync(dir);
 
-    const projects = files.map((file) => {
-      const raw = fs.readFileSync(path.join(dir, file), "utf-8");
-      const { data } = matter(raw);
-      return {
-        title: data.title,
-        description: data.description,
-        link: data.link,
-        category: data.category,
-        type: data.type,
-      };
-    });
+    const projects = files
+      .filter((file) => file.endsWith(".mdx") || file.endsWith(".md"))
+      .map((file) => {
+        const raw = fs.readFileSync(path.join(dir, file), "utf-8");
+        const { data } = matter(raw);
+        const {
+          title,
+          description,
+          link,
+          category: itemCategory,
+          type,
+        } = data as Partial<Project> & {
+          title: string;
+          description: string;
+          category: string;
+        };
+
+        const project = {
+          title,
+          description,
+          link,
+          category: itemCategory ?? category,
+          type,
+        } satisfies Project;
+
+        return project;
+      });
 
     result[category] = projects;
   }

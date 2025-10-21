@@ -19,7 +19,11 @@ if ! command -v docker >/dev/null 2>&1; then
 fi
 
 echo "[deploy] Building image '${IMAGE_NAME}' from context '${BUILD_CONTEXT}'..."
-docker build -t "${IMAGE_NAME}" "${BUILD_CONTEXT}"
+docker build -t "${IMAGE_NAME}" \
+  --build-arg NEXT_PUBLIC_EMAILJS_SERVICE_ID="${NEXT_PUBLIC_EMAILJS_SERVICE_ID}" \
+  --build-arg NEXT_PUBLIC_EMAILJS_TEMPLATE_ID="${NEXT_PUBLIC_EMAILJS_TEMPLATE_ID}" \
+  --build-arg NEXT_PUBLIC_EMAILJS_PUBLIC_KEY="${NEXT_PUBLIC_EMAILJS_PUBLIC_KEY}" \
+  "${BUILD_CONTEXT}"
 
 if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
   echo "[deploy] Stopping existing container '${CONTAINER_NAME}'..."
@@ -32,7 +36,6 @@ echo "[deploy] Starting container '${CONTAINER_NAME}' (port ${HOST_PORT}->${APP_
 docker run -d \
   --name "${CONTAINER_NAME}" \
   --restart unless-stopped \
-  --env-file .env \
   -p "${HOST_PORT}:${APP_PORT}" \
   "${IMAGE_NAME}"
 

@@ -43,7 +43,7 @@ export default function ContactForm() {
       );
       setSent(true);
       reset();
-    } catch (error) {
+    } catch {
       alert("Failed to send message. Please try again.");
     } finally {
       setIsSending(false);

@@ -22,7 +22,7 @@ const fallbackPosts: BlogPost[] = [
     title: "Check out my Medium blog",
     link: "https://medium.com/@brilianadeputra",
     pubDate: new Date().toISOString(),
-    contentSnippet: "Visit my Medium profile to read my latest articles about AI engineering, mobile development, and software engineering insights.",
+    contentSnippet: "Visit my Medium profile to read my latest articles about AI engineering, machine learning, and building intelligent products.",
   },
 ];
 

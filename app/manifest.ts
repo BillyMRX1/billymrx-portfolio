@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Brilian Ade Putra (Billy) - AI Engineer Portfolio',
     short_name: 'Billy Portfolio',
-    description: 'AI Engineer at Honda Japan with expertise in mobile development and AI solutions. Portfolio showcasing projects and professional experience.',
+    description: 'AI Engineer at Honda Japan building intelligent products with machine learning, data platforms, and full stack software craftsmanship.',
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',

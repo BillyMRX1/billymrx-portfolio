@@ -15,7 +15,7 @@ export async function GET() {
         "X-Frame-Options": "SAMEORIGIN",
       },
     });
-  } catch (error) {
+  } catch {
     return new NextResponse("Resume file not found", {
       status: 404,
       headers: {

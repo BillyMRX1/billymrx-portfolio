@@ -17,11 +17,11 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
 
   const isActive = (href: string) => {
     if (href === "/") {
-      return pathname === "/";
+      return pathname === "/" || pathname === "";
     }
     return pathname === href || pathname.startsWith(`${href}/`);
   };

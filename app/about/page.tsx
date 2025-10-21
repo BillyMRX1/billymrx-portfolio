@@ -3,24 +3,24 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about Brilian Ade Putra (Billy) - AI Engineer at Honda Japan with 3+ years in Android/Flutter development. Expertise in Kotlin, Jetpack Compose, Next.js, and AI solutions.",
+  description: "Learn about Brilian Ade Putra (Billy) - AI Engineer at Honda Japan combining machine learning, data platforms, and full stack product delivery.",
   keywords: [
     "About Brilian Ade Putra",
     "Billy AI Engineer",
     "Honda Japan AI Engineer",
-    "Android Developer Experience",
-    "Flutter Developer Skills",
-    "Kotlin Expert Tokyo",
+    "Machine Learning Engineer",
+    "Data Product Builder",
     "AI Engineer Background",
-    "Software Engineer Profile"
+    "Software Engineer Profile",
+    "Tokyo Tech Talent"
   ],
   openGraph: {
     title: "About Brilian Ade Putra (Billy) - AI Engineer at Honda Japan",
-    description: "Professional background of AI Engineer with extensive mobile development experience. Currently working at Honda Japan's AI Strategy division.",
+    description: "Professional background of an AI Engineer shaping intelligent products at Honda Japan's AI strategy division.",
   },
   twitter: {
     title: "About Brilian Ade Putra (Billy) - AI Engineer at Honda Japan", 
-    description: "Professional background of AI Engineer with extensive mobile development experience. Currently working at Honda Japan's AI Strategy division.",
+    description: "Professional background of an AI Engineer shaping intelligent products at Honda Japan's AI strategy division.",
   },
 };
 

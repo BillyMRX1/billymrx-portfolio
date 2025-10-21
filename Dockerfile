@@ -7,9 +7,20 @@ COPY package.json pnpm-lock.yaml ./
 RUN npm i -g pnpm
 RUN pnpm i
 
-# Builder stage
+# Builder stage with build args
 FROM base AS builder
 WORKDIR /app
+
+# Accept build arguments
+ARG NEXT_PUBLIC_EMAILJS_SERVICE_ID
+ARG NEXT_PUBLIC_EMAILJS_TEMPLATE_ID  
+ARG NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
+# Set environment variables from build args
+ENV NEXT_PUBLIC_EMAILJS_SERVICE_ID=$NEXT_PUBLIC_EMAILJS_SERVICE_ID
+ENV NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=$NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+ENV NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=$NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
 COPY . .
 RUN pnpm build
 

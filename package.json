@@ -8,9 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "docker:build": "docker build -t billymrx-portfolio .",
-    "docker:run": "docker run -d -p 3000:3000 --env-file .env --name billymrx-portfolio billymrx-portfolio",
-    "deploy": "docker stop billymrx-portfolio && docker rm billymrx-portfolio && docker build -t billymrx-portfolio . && docker run -d -p 3000:3000 --env-file .env --name billymrx-portfolio billymrx-portfolio"
+    "docker:build": "ENV_FILE=.env SKIP_RUN=1 bash ./scripts/deploy.sh",
+    "docker:run": "ENV_FILE=.env SKIP_BUILD=1 bash ./scripts/deploy.sh",
+    "deploy": "ENV_FILE=.env bash ./scripts/deploy.sh"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

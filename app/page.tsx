@@ -18,36 +18,36 @@ import {
 
 export const metadata: Metadata = {
   title: "Home",
-  description: "Welcome to Brilian Ade Putra (Billy)'s portfolio. AI Engineer at Honda Japan specializing in mobile development, AI solutions, and full-stack applications. Available for opportunities in Tokyo.",
+  description: "Welcome to Brilian Ade Putra (Billy)'s portfolio. AI Engineer at Honda Japan building intelligent products with machine learning, data platforms, and modern web experiences in Tokyo.",
   keywords: [
     "AI Engineer Tokyo",
+    "Machine Learning Engineer",
+    "Honda AI",
+    "Generative AI",
     "Software Engineer Japan",
-    "Honda AI Engineer",
-    "Mobile App Developer Tokyo",
-    "Flutter Developer Japan",
-    "Android Developer Tokyo",
+    "Data Products",
     "Brilian Ade Putra",
     "Billy Portfolio"
   ],
   openGraph: {
     title: "Brilian Ade Putra (Billy) - AI Engineer Portfolio",
-    description: "AI Engineer at Honda Japan with expertise in mobile development and AI solutions. Available for job opportunities and freelance projects in Tokyo.",
+    description: "AI Engineer at Honda Japan with expertise in machine learning, data products, and production ready software in Tokyo.",
   },
   twitter: {
     title: "Brilian Ade Putra (Billy) - AI Engineer Portfolio",
-    description: "AI Engineer at Honda Japan with expertise in mobile development and AI solutions. Available for job opportunities and freelance projects in Tokyo.",
+    description: "AI Engineer at Honda Japan with expertise in machine learning, data products, and production ready software in Tokyo.",
   },
 };
 
 const techStack = [
+  { name: "Python", icon: SiPython, color: "#3776AB" },
+  { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
+  { name: "React", icon: SiReact, color: "#61DAFB" },
   { name: "Kotlin", icon: SiKotlin, color: "#7F52FF" },
   { name: "Android", icon: SiAndroid, color: "#3DDC84" },
   { name: "Flutter", icon: SiFlutter, color: "#02569B" },
-  { name: "React", icon: SiReact, color: "#61DAFB" },
-  { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
-  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-  { name: "Python", icon: SiPython, color: "#3776AB" },
-  { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
 ];
 
 export default async function Home() {
@@ -74,7 +74,7 @@ export default async function Home() {
             Featured <span className="text-neon">Projects</span>
           </h2>
           <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-            A selection of my best work in mobile development, AI/ML, and web applications
+            A selection of my favorite experiments in applied AI, intelligent systems, and end to end product experiences
           </p>
         </FadeInWhenVisible>
 
@@ -132,7 +132,7 @@ export default async function Home() {
             Tech <span className="text-neon">Stack</span>
           </h2>
           <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-            Technologies I work with to build modern applications
+            Technologies I use to deliver intelligent products from models to interfaces
           </p>
         </FadeInWhenVisible>
 
@@ -168,11 +168,11 @@ export default async function Home() {
         <FadeInWhenVisible>
           <div className="bg-gradient-to-br from-neon/10 to-purple-500/10 rounded-2xl border border-neon/30 p-12 text-center">
             <h2 className="text-4xl font-bold mb-4">
-              Let's Work <span className="text-neon">Together</span>
+              Let&apos;s Work <span className="text-neon">Together</span>
             </h2>
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-              I'm currently available for freelance projects and full-time opportunities.
-              Let's create something amazing together!
+              I&apos;m currently available for freelance projects and full-time opportunities.
+              Let&apos;s create something amazing together!
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link

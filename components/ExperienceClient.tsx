@@ -9,35 +9,35 @@ export default function ExperienceClient() {
       company: "Honda",
       date: "May 2025 - Present",
       description:
-        "Developing AI-driven solutions, leveraging machine learning models, NLP, and cloud infrastructure.",
+        "Designing machine learning models, orchestrating data pipelines, and shipping intelligent mobility experiences across Honda digital products.",
     },
     {
-      title: "Mobile Developer",
+      title: "Product Engineer",
       company: "MMS Group Indonesia",
       date: "Sep 2023 - Jan 2025",
       description:
-        "Built and maintained cross-platform apps using React Native and CI/CD pipelines, enhancing internal tools and processes.",
+        "Led cross platform product squads, integrated analytics signals, and partnered with data teams to embed early AI features inside operations tooling.",
     },
     {
       title: "Android Engineer",
       company: "Gravel",
       date: "Oct 2022 - Sep 2023",
       description:
-        "Built Android apps using Kotlin, created an innovative design system, and streamlined development processes.",
+        "Built Kotlin based applications while creating reusable design systems, telemetry foundations, and experimentation hooks for future AI capabilities.",
     },
     {
       title: "Android Developer",
       company: "Vision+",
       date: "Sep 2021 - Oct 2022",
       description:
-        "Led the integration of Dolby Vision and Dolby Atmos, optimizing app performance and user experience.",
+        "Led the integration of Dolby Vision and Dolby Atmos, introduced personalization roadmaps, and raised product instrumentation for data informed streaming features.",
     },
     {
-      title: "Flutter Developer (Part-Time)",
+      title: "Flutter Developer (Part Time)",
       company: "Garapin",
       date: "Aug 2021 - Feb 2023",
       description:
-        "Developed cross-platform apps for Android and iOS using Flutter and expanded platform accessibility with Next.js.",
+        "Developed Flutter applications for Android and iOS, explored AI assisted customer flows, and expanded platform accessibility with Next.js.",
     },
   ];
 

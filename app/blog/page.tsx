@@ -5,24 +5,24 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Read latest articles and insights by Brilian Ade Putra (Billy) on AI engineering, mobile development, and software engineering. Medium posts about technology and career growth.",
+  description: "Read latest articles and insights by Brilian Ade Putra (Billy) on AI engineering, machine learning, and building intelligent products. Medium posts about technology and growth.",
   keywords: [
     "Billy Blog",
     "AI Engineering Blog",
-    "Mobile Development Articles",
+    "Machine Learning Articles",
     "Software Engineering Insights",
     "Technology Blog",
     "Medium Articles",
-    "Android Development Blog",
+    "Generative AI Lessons",
     "Career Growth Articles"
   ],
   openGraph: {
     title: "Blog - Brilian Ade Putra (Billy) Tech Articles & Insights",
-    description: "Read the latest tech articles and professional insights from AI Engineer Brilian Ade Putra, covering mobile development, AI, and software engineering.",
+    description: "Read the latest tech articles and professional insights from AI Engineer Brilian Ade Putra, covering machine learning, intelligent products, and software engineering.",
   },
   twitter: {
     title: "Blog - Brilian Ade Putra (Billy) Tech Articles & Insights",
-    description: "Read the latest tech articles and professional insights from AI Engineer Brilian Ade Putra, covering mobile development, AI, and software engineering.",
+    description: "Read the latest tech articles and professional insights from AI Engineer Brilian Ade Putra, covering machine learning, intelligent products, and software engineering.",
   },
 };
 

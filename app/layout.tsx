@@ -13,19 +13,19 @@ export const metadata: Metadata = {
     default: "Brilian Ade Putra (Billy) - AI Engineer & Software Developer in Tokyo",
     template: "%s | Brilian Ade Putra - AI Engineer"
   },
-  description: "AI Engineer at Honda Japan with 3+ years experience in mobile development. Specializing in AI solutions, Android/Flutter apps, and full-stack development in Tokyo, Japan.",
+  description: "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
   keywords: [
     "AI Engineer",
-    "Software Engineer", 
-    "Android Developer",
-    "Flutter Developer",
-    "Mobile App Development",
+    "Machine Learning Engineer",
+    "Generative AI",
+    "Data Engineering",
+    "Software Engineer",
     "Full Stack Developer",
     "Tokyo Japan",
     "Honda AI",
-    "Kotlin",
     "Next.js",
-    "Machine Learning",
+    "Python",
+    "Product Strategy",
     "Brilian Ade Putra",
     "Billy",
     "BillyMRX"
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Brilian Ade Putra - AI Engineer",
     title: "Brilian Ade Putra (Billy) - AI Engineer & Software Developer in Tokyo",
-    description: "AI Engineer at Honda Japan with 3+ years experience in mobile development. Specializing in AI solutions, Android/Flutter apps, and full-stack development in Tokyo, Japan.",
+    description: "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
     images: [
       {
         url: `${siteUrl}/avatar.jpg`,
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Brilian Ade Putra (Billy) - AI Engineer & Software Developer in Tokyo",
-    description: "AI Engineer at Honda Japan with 3+ years experience in mobile development. Specializing in AI solutions, Android/Flutter apps, and full-stack development in Tokyo, Japan.",
+    description: "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
     images: [`${siteUrl}/avatar.jpg`],
     creator: "@BillyMRX1",
   },
@@ -96,17 +96,17 @@ const structuredData = {
     "addressLocality": "Tokyo",
     "addressCountry": "Japan"
   },
-  "alumniOf": "Android & Flutter Development",
+  "alumniOf": "Artificial Intelligence and Product Engineering",
   "knowsAbout": [
     "Artificial Intelligence",
-    "Mobile App Development",
-    "Android Development",
-    "Flutter",
-    "Kotlin",
+    "Applied Machine Learning",
+    "Generative AI",
+    "Data Engineering",
+    "Product Engineering",
     "Full Stack Development",
     "Next.js",
-    "Machine Learning",
-    "Software Engineering"
+    "Python",
+    "Software Architecture"
   ],
   "sameAs": [
     "https://www.linkedin.com/in/brilianap",

@@ -27,7 +27,7 @@ export default function AboutClient() {
         <Typewriter
           words={[
             "Hello, I'm Billy.",
-            "Android Developer turned AI Engineer.",
+            "AI Engineer crafting intelligent products.",
             "Welcome to my Website.",
           ]}
           loop={0}
@@ -39,7 +39,7 @@ export default function AboutClient() {
         />
       </h1>
       <p className="text-sm sm:text-base text-gray-400 mb-6">
-        Android Developer → AI Engineer
+        AI Engineer focused on human centered innovation
       </p>
 
       {/* 🔗 External Links */}
@@ -75,32 +75,33 @@ export default function AboutClient() {
 
       <div className="space-y-4 text-left sm:text-center text-sm sm:text-base leading-relaxed">
         <p className="mb-4">
-          I'm <span className="text-neon font-semibold">Brilian Ade Putra</span>{" "}
+          I&apos;m <span className="text-neon font-semibold">Brilian Ade Putra</span>{" "}
           , but you may also call me{" "}
-          <span className="text-neon font-semibold">Billy</span> — a passionate
-          developer with over 3 years of experience building high-performance
-          mobile applications using Kotlin, Jetpack Compose, and Flutter. I've
-          worked on a variety of Android apps across industries including media,
-          construction, and enterprise solutions.
+          <span className="text-neon font-semibold">Billy</span>. I am an AI
+          engineer committed to building intelligent experiences that feel
+          personal and create measurable impact for users and businesses.
         </p>
         <p className="mb-4">
           I currently work as an{" "}
           <span className="text-neon font-semibold">
             AI Engineer at Honda Japan
           </span>
-          , where I'm exploring the intersection of software engineering and
-          artificial intelligence to develop smart, human-centered systems.
+          , where I&apos;m exploring the intersection of software engineering and
+          artificial intelligence to develop smart, human centered systems that
+          power next generation mobility and digital experiences.
         </p>
         <p className="mb-4">
-          My career spans native and cross-platform development, CI/CD
-          automation, and backend integration, with hands-on experience using
-          modern stacks like Next.js, FastAPI, and cloud-based infrastructure.
+          My day to day covers applied machine learning, experimentation,
+          model deployment, and data driven product iteration. A foundation in
+          Android and product engineering lets me deliver production ready
+          systems from data pipelines to polished interfaces across web and
+          mobile.
         </p>
         <p>
-          I'm obsessed with futuristic UI, AI-powered products, and automation.
-          Whether it's crafting sleek mobile interfaces or building intelligent
-          backend systems, I'm always looking to push boundaries and bring ideas
-          to life.
+          I&apos;m obsessed with futuristic UI, AI powered products, and automation.
+          Whether it&apos;s training models, improving inference performance, or
+          weaving AI into everyday workflows, I&apos;m always looking to push
+          boundaries and bring ideas to life.
         </p>
       </div>
 

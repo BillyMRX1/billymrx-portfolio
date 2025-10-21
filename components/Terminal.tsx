@@ -9,7 +9,7 @@ const initialLines = [
 
 const commands: Record<string, string> = {
   help: "Available commands: whoami, projects, clear",
-  whoami: "Android Dev turned AI Engineer — BillyMRX.",
+  whoami: "AI Engineer crafting intelligent products — BillyMRX.",
   projects: "Navigate to /projects to view portfolio.",
   clear: "clear",
 };

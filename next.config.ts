@@ -1,10 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // SEO and Performance optimizations
+  // SEO and performance
   compress: true,
   poweredByHeader: false,
-  
+  reactStrictMode: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+  experimental: {
+    optimizePackageImports: ["react-icons", "framer-motion"],
+  },
+
   // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],

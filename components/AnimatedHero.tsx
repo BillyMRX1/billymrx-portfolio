@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const roles = [
-  "Android Developer",
   "AI Engineer",
-  "Full Stack Developer",
-  "Mobile App Developer",
+  "Applied Machine Learning Engineer",
+  "Generative AI Prototyper",
+  "Full Stack Builder",
 ];
 
 export default function AnimatedHero({

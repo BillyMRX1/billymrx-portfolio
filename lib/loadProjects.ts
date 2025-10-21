@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { cache } from "react";
 
 export type ProjectType = "personal" | "work" | "freelance" | "academic";
 
@@ -12,7 +13,7 @@ export type Project = {
   type?: ProjectType;
 };
 
-export async function getAllProjects(): Promise<Record<string, Project[]>> {
+export const getAllProjects = cache(async (): Promise<Record<string, Project[]>> => {
   const basePath = path.join(process.cwd(), "content/projects");
   const categories = fs.readdirSync(basePath);
 
@@ -54,4 +55,4 @@ export async function getAllProjects(): Promise<Record<string, Project[]>> {
   }
 
   return result;
-}
+});

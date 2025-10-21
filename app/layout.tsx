@@ -2,8 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import ShellEnhancements from "@/components/ShellEnhancements";
+import CursorFollower from "@/components/CursorFollower";
+import GradientBlur from "@/components/GradientBlur";
 
-const siteUrl = "https://billymrx.vercel.app";
+const siteUrl = "https://billymrx.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -132,6 +134,8 @@ export default function RootLayout({
         />
       </head>
       <body className="relative bg-black text-white font-sans">
+        <CursorFollower />
+        <GradientBlur />
         <ShellEnhancements />
         <Navbar />
         {children}

@@ -63,7 +63,7 @@ export default function AboutClient() {
           <FaLinkedin />
         </a>
         <a
-          href="https://billymrx.vercel.app"
+          href="https://billymrx.com"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-white transition"

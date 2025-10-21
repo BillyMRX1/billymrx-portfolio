@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         '/admin/',
       ],
     },
-    sitemap: 'https://billymrx.vercel.app/sitemap.xml',
+    sitemap: 'https://billymrx.com/sitemap.xml',
   }
 }

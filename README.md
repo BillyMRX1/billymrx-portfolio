@@ -1,59 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BillyMRX Portfolio
 
-## Getting Started
+This repository powers [billymrx.com](https://billymrx.com), the personal site of **Brilian Ade Putra (Billy)** who works as an AI Engineer at Honda Japan. The experience acts as a living portfolio that blends storytelling, machine learning case studies, product thinking, and motion rich interfaces.
 
-First, run the development server:
+## Visit the Site
+* Live experience: [billymrx.com](https://billymrx.com)
+* Focus areas: AI engineering, intelligent products, full stack delivery from Tokyo, Japan
 
+## Page Overview
+* `/`: Hero showcase with featured projects, tech stack highlights, and calls to action
+* `/projects`: Category tabs for mobile, machine learning, and web case studies
+* `/about`: Animated introduction and skill groups with tilt effects
+* `/experience`: Motion timeline of professional roles
+* `/blog`: Medium RSS reader (`lib/getMediumPosts.ts`)
+* `/resume`: Inline PDF preview plus download link
+* `/contact`: EmailJS contact form with success states
+
+## Tech Stack
+* Next.js 15 (App Router) with React 19 and TypeScript
+* Tailwind CSS with a custom neon inspired theme
+* Framer Motion with supporting glitch, parallax, and particle libraries
+* EmailJS for inbound messages and RSS Parser for Medium feed ingestion
+* Jest and Testing Library for component coverage (`__tests__/`)
+
+## Content and Structure
+* `app/`: Route handlers, metadata, and page compositions
+* `components/`: Reusable UI, animation hooks, and client only enhancements
+* `content/projects/`: Markdown and MDX files that drive the featured and catalogued projects
+* `public/`: Static assets including `avatar.jpg`, icon files, and `resume.pdf`
+* `scripts/deploy.sh`: Docker helper used locally and in CI
+
+## Local Development (optional)
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
+Medium RSS fetch runs on the server. Offline development falls back to a placeholder post.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment Notes
+* `scripts/deploy.sh` builds the production image, replaces the running container, and exposes port `3000`
+* GitHub Actions workflow (`.github/workflows/deploy.yml`) connects to the VPS, syncs `main`, injects EmailJS environment variables, and runs the same script remotely
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Extending the Portfolio
+* Add or reorder project entries by dropping MDX files into the relevant folder under `content/projects/`
+* Update experience and skill highlights directly inside `components/ExperienceClient.tsx` and `components/Skills.tsx`
+* Customize motion effects or the in browser terminal via the components in `components/`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load fonts.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) for more information.
-
-## Docker Deployment
-
-Use the provided script to build and redeploy the production container locally or on your server:
-
-```bash
-./scripts/deploy.sh
-```
-
-The script will:
-
-- build the Docker image defined in `Dockerfile`
-- stop and remove any existing container with the same name
-- start a fresh container that exposes port `3000`
-
-You can override defaults with environment variables:
-
-```bash
-IMAGE_NAME=my-portfolio HOST_PORT=8080 ./scripts/deploy.sh
-```
-
-The script requires Docker to be installed and available in `PATH`.
-
-### GitHub Actions
-
-The workflow in `.github/workflows/deploy.yml` connects to your VPS via SSH (using the
-`VPS_HOST`, `VPS_USERNAME`, and `VPS_SSH_KEY` secrets) and runs `scripts/deploy.sh` after
-pulling the latest changes on the `main` branch. Update the remote path (`~/billymrx-portfolio`)
-or environment variables in the workflow if your server layout differs.
+Thanks for visiting. If you would like to collaborate or chat about applied AI, reach out through the contact form or connect on [LinkedIn](https://www.linkedin.com/in/brilianap).

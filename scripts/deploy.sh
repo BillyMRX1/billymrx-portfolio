@@ -32,6 +32,7 @@ echo "[deploy] Starting container '${CONTAINER_NAME}' (port ${HOST_PORT}->${APP_
 docker run -d \
   --name "${CONTAINER_NAME}" \
   --restart unless-stopped \
+  --env-file .env \
   -p "${HOST_PORT}:${APP_PORT}" \
   "${IMAGE_NAME}"
 

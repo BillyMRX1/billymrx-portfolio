@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import ShellEnhancements from "@/components/ShellEnhancements";
 import CursorFollower from "@/components/CursorFollower";
 import GradientBlur from "@/components/GradientBlur";
@@ -139,6 +140,7 @@ export default function RootLayout({
         <ShellEnhancements />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

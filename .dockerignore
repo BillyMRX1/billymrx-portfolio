@@ -8,6 +8,7 @@ out
 
 # Test results
 coverage
+__tests__
 
 # Environment variables
 .env
@@ -18,6 +19,14 @@ coverage
 # VSCode + IDX
 .vscode
 .idx
+.claude
+
+# Git
+.git
+.gitignore
+
+# CI/CD
+.github
 
 # Misc
 .DS_Store
@@ -28,3 +37,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Documentation
+README.md
+*.md
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Scripts (not needed in container)
+scripts

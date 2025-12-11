@@ -14,18 +14,23 @@ jobs:
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_SSH_PASSWORD }}
+          key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
           script: |
             set -e
             cd ~/billymrx-portfolio
-            
+
+            # Pull latest code
             git fetch origin
             git reset --hard origin/main
             git clean -fd
-            
-            export NEXT_PUBLIC_EMAILJS_SERVICE_ID="${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}"
-            export NEXT_PUBLIC_EMAILJS_TEMPLATE_ID="${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}"
-            export NEXT_PUBLIC_EMAILJS_PUBLIC_KEY="${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}"
 
+            # Create .env file with secrets
+            cat > .env <<EOF
+            NEXT_PUBLIC_EMAILJS_SERVICE_ID=${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
+            NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
+            NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+            EOF
+
+            # Run deployment script
             chmod +x scripts/deploy.sh
             ./scripts/deploy.sh

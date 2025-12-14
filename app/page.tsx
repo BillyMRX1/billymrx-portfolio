@@ -73,7 +73,7 @@ export default async function Home() {
           <h2 className="text-4xl font-bold text-center mb-4">
             Featured <span className="text-neon">Projects</span>
           </h2>
-          <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
             A selection of my favorite experiments in applied AI, intelligent systems, and end to end product experiences
           </p>
         </FadeInWhenVisible>
@@ -93,7 +93,7 @@ export default async function Home() {
                   )}
                 </div>
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                <p className="text-text-secondary text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
                 {project.link && (
@@ -131,7 +131,7 @@ export default async function Home() {
           <h2 className="text-4xl font-bold text-center mb-4">
             Tech <span className="text-neon">Stack</span>
           </h2>
-          <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
             Technologies I use to deliver intelligent products from models to interfaces
           </p>
         </FadeInWhenVisible>
@@ -154,7 +154,7 @@ export default async function Home() {
           <div className="text-center mt-8">
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-neon transition-colors"
+              className="inline-flex items-center gap-2 text-text-secondary hover:text-neon transition-colors"
             >
               Learn more about my skills
               <span>→</span>
@@ -170,7 +170,7 @@ export default async function Home() {
             <h2 className="text-4xl font-bold mb-4">
               Let&apos;s Work <span className="text-neon">Together</span>
             </h2>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
               I&apos;m currently available for freelance projects and full-time opportunities.
               Let&apos;s create something amazing together!
             </p>

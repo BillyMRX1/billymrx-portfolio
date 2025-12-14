@@ -51,7 +51,7 @@ export default function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-neon transition-colors text-sm"
+                    className="text-text-secondary hover:text-neon transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -73,7 +73,7 @@ export default function Footer() {
                   aria-label={social.label}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="text-gray-400 hover:text-neon transition-colors"
+                  className="text-text-secondary hover:text-neon transition-colors"
                 >
                   <social.icon className="w-6 h-6" />
                 </motion.a>
@@ -84,11 +84,11 @@ export default function Footer() {
           {/* Branding */}
           <div>
             <h3 className="text-lg font-bold text-neon mb-4">About</h3>
-            <p className="text-gray-400 text-sm mb-2">
+            <p className="text-text-secondary text-sm mb-2">
               Brilian Ade Putra (Billy)
             </p>
-            <p className="text-gray-400 text-sm">AI Engineer at Honda Japan</p>
-            <p className="text-gray-400 text-xs mt-2">Tokyo, Japan</p>
+            <p className="text-text-secondary text-sm">AI Engineer at Honda Japan</p>
+            <p className="text-text-secondary text-xs mt-2">Tokyo, Japan</p>
           </div>
         </div>
 

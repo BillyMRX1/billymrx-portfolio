@@ -2,12 +2,16 @@
 
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-type FormData = {
-  from_name: string;
-  from_email: string;
-  message: string;
-};
+const contactSchema = z.object({
+  from_name: z.string().min(2, "Name must be at least 2 characters"),
+  from_email: z.string().email("Invalid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type FormData = z.infer<typeof contactSchema>;
 
 type EmailJSClient = (typeof import("@emailjs/browser"))["default"];
 let emailClientPromise: Promise<EmailJSClient> | null = null;
@@ -20,7 +24,14 @@ const loadEmailClient = () => {
 };
 
 export default function ContactForm() {
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(contactSchema),
+  });
   const [sent, setSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
@@ -55,23 +66,40 @@ export default function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="max-w-xl mx-auto flex flex-col gap-4 text-left"
     >
-      <input
-        {...register("from_name", { required: true })}
-        placeholder="Your Name"
-        className="bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
-      />
-      <input
-        {...register("from_email", { required: true })}
-        placeholder="Your Email"
-        type="email"
-        className="bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
-      />
-      <textarea
-        {...register("message", { required: true })}
-        placeholder="Your Message"
-        rows={6}
-        className="bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
-      />
+      <div>
+        <input
+          {...register("from_name")}
+          placeholder="Your Name"
+          className="w-full bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
+        />
+        {errors.from_name && (
+          <p className="text-red-400 text-sm mt-1">{errors.from_name.message}</p>
+        )}
+      </div>
+
+      <div>
+        <input
+          {...register("from_email")}
+          placeholder="Your Email"
+          type="email"
+          className="w-full bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
+        />
+        {errors.from_email && (
+          <p className="text-red-400 text-sm mt-1">{errors.from_email.message}</p>
+        )}
+      </div>
+
+      <div>
+        <textarea
+          {...register("message")}
+          placeholder="Your Message"
+          rows={6}
+          className="w-full bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
+        />
+        {errors.message && (
+          <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>
+        )}
+      </div>
 
       <button
         type="submit"

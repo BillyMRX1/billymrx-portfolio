@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import withBundleAnalyzer from "@next/bundle-analyzer";
 
 const nextConfig: NextConfig = {
   output: 'standalone',
@@ -20,7 +21,7 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  
+
   // Headers for better SEO and security
   async headers() {
     return [
@@ -43,7 +44,7 @@ const nextConfig: NextConfig = {
       },
     ]
   },
-  
+
   // Redirects for better UX and SEO
   async redirects() {
     return [
@@ -56,4 +57,9 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// Wrap config with bundle analyzer
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+export default bundleAnalyzer(nextConfig);

@@ -7,11 +7,11 @@ import { Typewriter } from "react-simple-typewriter";
 
 export default function AboutClient() {
   return (
-    <div className="min-h-screen pt-28 px-4 sm:px-6 md:px-8 max-w-4xl mx-auto text-gray-300 text-center">
+    <div className="min-h-screen pt-28 px-4 sm:px-6 md:px-8 max-w-4xl mx-auto text-text-primary text-center">
       {/* 🧑 Avatar */}
       <Image
         src="/avatar.jpg"
-        alt="Profile picture"
+        alt="Brilian Ade Putra (Billy), AI Engineer at Honda Japan"
         width={128}
         height={128}
         priority
@@ -38,7 +38,7 @@ export default function AboutClient() {
           delaySpeed={2000}
         />
       </h1>
-      <p className="text-sm sm:text-base text-gray-400 mb-6">
+      <p className="text-sm sm:text-base text-text-secondary mb-6">
         AI Engineer focused on human centered innovation
       </p>
 
@@ -73,35 +73,22 @@ export default function AboutClient() {
         </a>
       </div>
 
-      <div className="space-y-4 text-left sm:text-center text-sm sm:text-base leading-relaxed">
-        <p className="mb-4">
-          I&apos;m <span className="text-neon font-semibold">Brilian Ade Putra</span>{" "}
-          , but you may also call me{" "}
-          <span className="text-neon font-semibold">Billy</span>. I am an AI
-          engineer committed to building intelligent experiences that feel
-          personal and create measurable impact for users and businesses.
-        </p>
-        <p className="mb-4">
-          I currently work as an{" "}
-          <span className="text-neon font-semibold">
-            AI Engineer at Honda Japan
-          </span>
-          , where I&apos;m exploring the intersection of software engineering and
-          artificial intelligence to develop smart, human centered systems that
-          power next generation mobility and digital experiences.
-        </p>
-        <p className="mb-4">
-          My day to day covers applied machine learning, experimentation,
-          model deployment, and data driven product iteration. A foundation in
-          Android and product engineering lets me deliver production ready
-          systems from data pipelines to polished interfaces across web and
-          mobile.
-        </p>
+      <div className="space-y-4 text-left text-sm sm:text-base leading-relaxed">
         <p>
-          I&apos;m obsessed with futuristic UI, AI powered products, and automation.
-          Whether it&apos;s training models, improving inference performance, or
-          weaving AI into everyday workflows, I&apos;m always looking to push
-          boundaries and bring ideas to life.
+          I&apos;m <span className="text-neon font-semibold">Brilian Ade Putra (Billy)</span>,
+          an AI Engineer at <span className="text-neon font-semibold">Honda Japan</span> working
+          on machine learning systems for automotive applications.
+        </p>
+
+        <p>
+          My focus is on applied AI - building RAG systems, computer vision models, and
+          production ML deployments. I also have a strong background in mobile development
+          (Android/Kotlin, Flutter, KMP) and full-stack engineering (Next.js, React, Python).
+        </p>
+
+        <p>
+          Previously built mobile products at MMS Group Indonesia, Vision+ (streaming platform),
+          and Gravel (construction workforce apps). Based in Tokyo, Japan.
         </p>
       </div>
 

@@ -7,9 +7,10 @@ interface HologramCardProps {
   description: string;
   link?: string;
   type?: ProjectType;
+  tech?: string;
 }
 
-export default function HologramCard({ title, description, link, type }: HologramCardProps) {
+export default function HologramCard({ title, description, link, type, tech }: HologramCardProps) {
   const badgeColor =
     type === "personal"
       ? "bg-purple-700"
@@ -37,7 +38,19 @@ export default function HologramCard({ title, description, link, type }: Hologra
           </span>
         )}
       </div>
-      <p className="text-sm text-gray-300">{description}</p>
+      <p className="text-sm text-text-primary">{description}</p>
+      {tech && (
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {tech.split(',').map((t) => (
+            <span
+              key={t.trim()}
+              className="text-xs px-2 py-0.5 rounded bg-neon/10 text-neon border border-neon/30"
+            >
+              {t.trim()}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 

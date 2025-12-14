@@ -91,6 +91,7 @@ export default function ProjectsClient({
                   description={project.description}
                   link={project.link}
                   type={project.type}
+                  tech={project.tech}
                 />
               </motion.div>
             ))

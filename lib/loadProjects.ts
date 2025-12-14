@@ -2,16 +2,19 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { cache } from "react";
+import { z } from "zod";
 
+const ProjectSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  link: z.string().url().optional(),
+  category: z.string(),
+  type: z.enum(["personal", "work", "freelance", "academic"]).optional(),
+  tech: z.string().optional(), // Comma-separated tech stack
+});
+
+export type Project = z.infer<typeof ProjectSchema>;
 export type ProjectType = "personal" | "work" | "freelance" | "academic";
-
-export type Project = {
-  title: string;
-  description: string;
-  link?: string;
-  category: string;
-  type?: ProjectType;
-};
 
 export const getAllProjects = cache(async (): Promise<Record<string, Project[]>> => {
   const basePath = path.join(process.cwd(), "content/projects");
@@ -28,27 +31,14 @@ export const getAllProjects = cache(async (): Promise<Record<string, Project[]>>
       .map((file) => {
         const raw = fs.readFileSync(path.join(dir, file), "utf-8");
         const { data } = matter(raw);
-        const {
-          title,
-          description,
-          link,
-          category: itemCategory,
-          type,
-        } = data as Partial<Project> & {
-          title: string;
-          description: string;
-          category: string;
-        };
 
-        const project = {
-          title,
-          description,
-          link,
-          category: itemCategory ?? category,
-          type,
-        } satisfies Project;
+        // Validate frontmatter with Zod
+        const validatedData = ProjectSchema.parse({
+          ...data,
+          category: data.category ?? category,
+        });
 
-        return project;
+        return validatedData;
       });
 
     result[category] = projects;

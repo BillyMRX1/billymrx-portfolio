@@ -60,13 +60,13 @@ export default function ExperienceClient() {
             <h3 className="text-lg sm:text-xl font-semibold text-neon">
               {exp.title}
             </h3>
-            <h4 className="text-sm sm:text-base text-gray-400 font-medium">
+            <h4 className="text-sm sm:text-base text-text-secondary font-medium">
               {exp.company}
             </h4>
             <p className="text-xs sm:text-sm text-gray-500 italic mb-2">
               {exp.date}
             </p>
-            <p className="text-sm text-gray-300">{exp.description}</p>
+            <p className="text-sm text-text-primary">{exp.description}</p>
           </motion.div>
         ))}
       </div>

@@ -7,11 +7,6 @@ const ClientParticles = dynamic(() => import("@/components/ClientParticles"), {
   loading: () => null,
 });
 
-const TerminalLauncher = dynamic(
-  () => import("@/components/TerminalLauncher"),
-  { ssr: false }
-);
-
 const BackToTop = dynamic(() => import("@/components/BackToTop"), {
   ssr: false,
 });
@@ -19,7 +14,6 @@ const BackToTop = dynamic(() => import("@/components/BackToTop"), {
 export default function ShellEnhancements() {
   return (
     <>
-      <TerminalLauncher />
       <ClientParticles />
       <BackToTop />
     </>

@@ -74,7 +74,7 @@ export default function Navbar() {
                 className={`relative transition ${
                   isActive(link.href)
                     ? "text-neon"
-                    : "text-gray-300 hover:text-neon"
+                    : "text-text-primary hover:text-neon"
                 }`}
               >
                 <motion.span
@@ -120,7 +120,7 @@ export default function Navbar() {
                     className={`transition ${
                       isActive(link.href)
                         ? "text-neon"
-                        : "text-gray-300 hover:text-neon"
+                        : "text-text-primary hover:text-neon"
                     }`}
                     onClick={() => setMenuOpen(false)}
                   >

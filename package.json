@@ -5,9 +5,12 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "docker:build": "ENV_FILE=.env SKIP_RUN=1 bash ./scripts/deploy.sh",
     "docker:run": "ENV_FILE=.env SKIP_BUILD=1 bash ./scripts/deploy.sh",
     "deploy": "ENV_FILE=.env bash ./scripts/deploy.sh"
@@ -16,6 +19,7 @@
     "@emailjs/browser": "^4.4.1",
     "@headlessui/react": "^2.2.3",
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^5.2.2",
     "framer-motion": "^12.10.5",
     "gray-matter": "^4.0.3",
     "next": "^15.3.3",
@@ -30,9 +34,11 @@
     "rss-parser": "^3.13.0",
     "sharp": "^0.34.5",
     "tsparticles": "^2.9.3",
-    "tsparticles-engine": "^2.12.0"
+    "tsparticles-engine": "^2.12.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.0.10",
     "@swc/core": "^1.11.24",
     "@swc/jest": "^0.2.38",
     "@testing-library/jest-dom": "^6.6.3",

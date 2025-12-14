@@ -10,29 +10,40 @@ type Skill = {
 };
 
 const groupedSkills = {
-  "AI Engineering": [
+  "AI & Machine Learning": [
     { name: "Python", icon: "/icons/python.svg" },
     { name: "TensorFlow", icon: "/icons/tensorflow.svg" },
-    { name: "NodeJS", icon: "/icons/nodejs.svg" },
+    { name: "OpenAI", icon: "/icons/openai.svg" },
+    { name: "Claude", icon: "/icons/claude.svg" },
+    { name: "Azure AI", icon: "/icons/azure-ai.svg" },
+    { name: "Amazon Bedrock", icon: "/icons/bedrock.svg" },
+    { name: "Computer Vision", icon: "/icons/opencv.svg" },
+    { name: "Jupyter", icon: "/icons/jupyter.svg" },
   ],
-  "Product Engineering": [
+  "Full Stack Engineering": [
+    { name: "TypeScript", icon: "/icons/typescript.svg" },
     { name: "Next.js", icon: "/icons/nextjs.svg" },
-    { name: "React Native", icon: "/icons/react.svg" },
+    { name: "Node.js", icon: "/icons/nodejs.svg" },
+    { name: "React", icon: "/icons/react.svg" },
+  ],
+  "Mobile Development": [
     { name: "Kotlin", icon: "/icons/kotlin.svg" },
+    { name: "Kotlin Multiplatform", icon: "/icons/kotlin.svg" },
     { name: "Jetpack Compose", icon: "/icons/compose.svg" },
+    { name: "React Native", icon: "/icons/react.svg" },
     { name: "Flutter", icon: "/icons/flutter.svg" },
+    { name: "Dart", icon: "/icons/dart.svg" },
     { name: "Swift", icon: "/icons/swift.svg" },
   ],
-  "Data Platforms": [
-    { name: "Firebase", icon: "/icons/firebase.svg" },
+  "Data & Infrastructure": [
     { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
     { name: "MongoDB", icon: "/icons/mongodb.svg" },
+    { name: "Firebase", icon: "/icons/firebase.svg" },
+    { name: "Docker", icon: "/icons/docker.svg" },
   ],
-  "Delivery Toolkit": [
+  DevOps: [
     { name: "GitHub Actions", icon: "/icons/github.svg" },
     { name: "GitLab CI", icon: "/icons/gitlab.svg" },
-    { name: "Express.js", icon: "/icons/express.png" },
-    { name: "Java", icon: "/icons/java.svg" },
   ],
 } satisfies Record<string, Skill[]>;
 
@@ -40,7 +51,7 @@ export default function Skills() {
   return (
     <section className="pt-20 px-8 max-w-5xl mx-auto text-center">
       <h2 className="text-3xl font-bold text-neon mb-6">Skills & Tech</h2>
-  
+
       {Object.entries(groupedSkills).map(([category, items]) => (
         <div key={category} className="mb-12">
           <h3 className="text-xl font-semibold text-neon mb-4">{category}</h3>
@@ -83,5 +94,5 @@ export default function Skills() {
         </div>
       ))}
     </section>
-  );  
+  );
 }

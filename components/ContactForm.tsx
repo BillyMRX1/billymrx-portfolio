@@ -23,6 +23,19 @@ const loadEmailClient = () => {
   return emailClientPromise;
 };
 
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "0.75rem 1rem",
+  border: "1px solid var(--border)",
+  borderRadius: "8px",
+  fontFamily: "inherit",
+  fontSize: "0.9rem",
+  background: "var(--input-bg)",
+  color: "var(--text)",
+  outline: "none",
+  transition: "border-color 0.2s, box-shadow 0.2s",
+};
+
 export default function ContactForm() {
   const {
     register,
@@ -32,16 +45,13 @@ export default function ContactForm() {
   } = useForm<FormData>({
     resolver: zodResolver(contactSchema),
   });
-  const [sent, setSent] = useState(false);
-  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const onSubmit = async (data: FormData) => {
-    if (isSending) return;
-
-    setIsSending(true);
+    if (status === "loading") return;
+    setStatus("loading");
     try {
       const emailjs = await loadEmailClient();
-
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
@@ -52,65 +62,177 @@ export default function ContactForm() {
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
-      setSent(true);
+      setStatus("success");
       reset();
     } catch {
-      alert("Failed to send message. Please try again.");
-    } finally {
-      setIsSending(false);
+      setStatus("error");
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="max-w-xl mx-auto flex flex-col gap-4 text-left"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
       <div>
+        <label
+          htmlFor="from_name"
+          style={{
+            display: "block",
+            fontSize: "0.8rem",
+            fontWeight: 500,
+            marginBottom: "0.4rem",
+            color: "var(--text)",
+          }}
+        >
+          Name
+        </label>
         <input
+          id="from_name"
           {...register("from_name")}
-          placeholder="Your Name"
-          className="w-full bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
+          placeholder="Your name"
+          style={inputStyle}
+          onFocus={(e) => {
+            (e.target as HTMLInputElement).style.borderColor = "var(--accent)";
+            (e.target as HTMLInputElement).style.boxShadow = "0 0 0 3px var(--accent-light)";
+          }}
+          onBlur={(e) => {
+            (e.target as HTMLInputElement).style.borderColor = "var(--border)";
+            (e.target as HTMLInputElement).style.boxShadow = "none";
+          }}
         />
         {errors.from_name && (
-          <p className="text-red-400 text-sm mt-1">{errors.from_name.message}</p>
+          <p style={{ color: "#ef4444", fontSize: "0.8rem", marginTop: "0.3rem" }}>
+            {errors.from_name.message}
+          </p>
         )}
       </div>
 
       <div>
+        <label
+          htmlFor="from_email"
+          style={{
+            display: "block",
+            fontSize: "0.8rem",
+            fontWeight: 500,
+            marginBottom: "0.4rem",
+            color: "var(--text)",
+          }}
+        >
+          Email
+        </label>
         <input
+          id="from_email"
           {...register("from_email")}
-          placeholder="Your Email"
+          placeholder="your@email.com"
           type="email"
-          className="w-full bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
+          style={inputStyle}
+          onFocus={(e) => {
+            (e.target as HTMLInputElement).style.borderColor = "var(--accent)";
+            (e.target as HTMLInputElement).style.boxShadow = "0 0 0 3px var(--accent-light)";
+          }}
+          onBlur={(e) => {
+            (e.target as HTMLInputElement).style.borderColor = "var(--border)";
+            (e.target as HTMLInputElement).style.boxShadow = "none";
+          }}
         />
         {errors.from_email && (
-          <p className="text-red-400 text-sm mt-1">{errors.from_email.message}</p>
+          <p style={{ color: "#ef4444", fontSize: "0.8rem", marginTop: "0.3rem" }}>
+            {errors.from_email.message}
+          </p>
         )}
       </div>
 
       <div>
+        <label
+          htmlFor="message"
+          style={{
+            display: "block",
+            fontSize: "0.8rem",
+            fontWeight: 500,
+            marginBottom: "0.4rem",
+            color: "var(--text)",
+          }}
+        >
+          Message
+        </label>
         <textarea
+          id="message"
           {...register("message")}
-          placeholder="Your Message"
-          rows={6}
-          className="w-full bg-black border border-neon text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-neon"
+          placeholder="What's on your mind?"
+          rows={5}
+          style={{ ...inputStyle, resize: "vertical", minHeight: "120px" }}
+          onFocus={(e) => {
+            (e.target as HTMLTextAreaElement).style.borderColor = "var(--accent)";
+            (e.target as HTMLTextAreaElement).style.boxShadow = "0 0 0 3px var(--accent-light)";
+          }}
+          onBlur={(e) => {
+            (e.target as HTMLTextAreaElement).style.borderColor = "var(--border)";
+            (e.target as HTMLTextAreaElement).style.boxShadow = "none";
+          }}
         />
         {errors.message && (
-          <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>
+          <p style={{ color: "#ef4444", fontSize: "0.8rem", marginTop: "0.3rem" }}>
+            {errors.message.message}
+          </p>
         )}
       </div>
 
       <button
         type="submit"
-        disabled={isSending}
-        className="px-6 py-2 bg-neon text-black font-bold rounded hover:brightness-125 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={status === "loading"}
+        style={{
+          padding: "0.75rem 2rem",
+          background: "var(--accent)",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          fontFamily: "inherit",
+          fontSize: "0.9rem",
+          fontWeight: 500,
+          cursor: status === "loading" ? "not-allowed" : "pointer",
+          opacity: status === "loading" ? 0.6 : 1,
+          transition: "background 0.2s, opacity 0.2s",
+          alignSelf: "flex-start",
+        }}
+        onMouseEnter={(e) => {
+          if (status !== "loading")
+            (e.currentTarget as HTMLButtonElement).style.background = "var(--accent-hover)";
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLButtonElement).style.background = "var(--accent)";
+        }}
       >
-        {isSending ? "Sending..." : "Send"}
+        {status === "loading" ? "Sending..." : "Send message"}
       </button>
 
-      {sent && (
-        <p className="text-green-400 mt-2">Message sent successfully!</p>
+      {status === "success" && (
+        <div
+          style={{
+            padding: "0.875rem 1rem",
+            borderRadius: "8px",
+            background: "rgba(34, 197, 94, 0.1)",
+            border: "1px solid rgba(34, 197, 94, 0.3)",
+            color: "#16a34a",
+            fontSize: "0.875rem",
+            fontWeight: 500,
+          }}
+        >
+          Message sent! I will get back to you soon.
+        </div>
+      )}
+
+      {status === "error" && (
+        <div
+          style={{
+            padding: "0.875rem 1rem",
+            borderRadius: "8px",
+            background: "rgba(239, 68, 68, 0.1)",
+            border: "1px solid rgba(239, 68, 68, 0.3)",
+            color: "#dc2626",
+            fontSize: "0.875rem",
+            fontWeight: 500,
+          }}
+        >
+          Something went wrong. Please try again.
+        </div>
       )}
     </form>
   );

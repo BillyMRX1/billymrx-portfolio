@@ -1,137 +1,222 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-  { href: "/resume", label: "Resume" },
-  { href: "/contact", label: "Contact" },
-  { href: "/blog", label: "Blog" },
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Blog", href: "#blog" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname() || "";
 
-  const isActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/" || pathname === "";
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 72;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
     }
-    return pathname === href || pathname.startsWith(`${href}/`);
   };
 
   return (
-    <motion.nav
-      className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-sm border-b border-neon"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-neon">
-          <motion.span
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block"
+    <>
+      <nav
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          background: scrolled ? "var(--nav-bg)" : "transparent",
+          backdropFilter: scrolled ? "blur(12px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+          borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+          transition: "all 0.3s ease",
+          padding: "0 2rem",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            height: "64px",
+          }}
+        >
+          {/* Logo */}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            style={{
+              fontWeight: 700,
+              fontSize: "1.1rem",
+              color: "var(--text)",
+              textDecoration: "none",
+              letterSpacing: "-0.02em",
+            }}
           >
-            BillyMRX
-          </motion.span>
-        </Link>
+            Brilian.
+          </a>
 
-        {/* Mobile toggle */}
-        <div className="sm:hidden">
-          <motion.button
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle Menu"
-            whileTap={{ scale: 0.9 }}
+          {/* Desktop links */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "2rem",
+            }}
+            className="nav-desktop"
           >
-            {menuOpen ? (
-              <XMarkIcon className="h-6 w-6 text-neon" />
-            ) : (
-              <Bars3Icon className="h-6 w-6 text-neon" />
-            )}
-          </motion.button>
-        </div>
+            {navLinks.map((link) => (
+              <NavLink key={link.href} link={link} onClick={handleNavClick} />
+            ))}
+            <ThemeToggle />
+          </div>
 
-        {/* Desktop nav */}
-        <div className="hidden sm:flex gap-6 text-sm">
-          {navLinks.map((link, index) => (
-            <motion.div
-              key={link.href}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 + 0.5 }}
+          {/* Mobile: theme toggle + hamburger */}
+          <div
+            style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
+            className="nav-mobile"
+          >
+            <ThemeToggle />
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                background: "transparent",
+                border: "none",
+                cursor: "pointer",
+                padding: "4px",
+              }}
             >
-              <Link
-                href={link.href}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                className={`relative transition ${
-                  isActive(link.href)
-                    ? "text-neon"
-                    : "text-text-primary hover:text-neon"
-                }`}
-              >
-                <motion.span
-                  whileHover={{ scale: 1.05 }}
-                  className="inline-block"
-                >
-                  {link.label}
-                </motion.span>
-                {isActive(link.href) && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            </motion.div>
-          ))}
+              <span
+                style={{
+                  display: "block",
+                  width: "22px",
+                  height: "2px",
+                  background: "var(--text)",
+                  borderRadius: "2px",
+                  transition: "all 0.25s",
+                  transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
+                }}
+              />
+              <span
+                style={{
+                  display: "block",
+                  width: "22px",
+                  height: "2px",
+                  background: "var(--text)",
+                  borderRadius: "2px",
+                  transition: "all 0.25s",
+                  opacity: menuOpen ? 0 : 1,
+                }}
+              />
+              <span
+                style={{
+                  display: "block",
+                  width: "22px",
+                  height: "2px",
+                  background: "var(--text)",
+                  borderRadius: "2px",
+                  transition: "all 0.25s",
+                  transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
+                }}
+              />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Mobile nav dropdown */}
-      <AnimatePresence>
+        {/* Mobile dropdown */}
         {menuOpen && (
-          <motion.div
-            className="sm:hidden px-6 pb-4"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+          <div
+            className="nav-mobile-menu"
+            style={{
+              background: "var(--bg)",
+              borderTop: "1px solid var(--border)",
+              padding: "1.25rem 2rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.25rem",
+            }}
           >
-            <div className="flex flex-col gap-3">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <Link
-                    href={link.href}
-                    aria-current={isActive(link.href) ? "page" : undefined}
-                    className={`transition ${
-                      isActive(link.href)
-                        ? "text-neon"
-                        : "text-text-primary hover:text-neon"
-                    }`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                style={{
+                  textDecoration: "none",
+                  color: "var(--text-secondary)",
+                  fontSize: "0.9rem",
+                  fontWeight: 500,
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         )}
-      </AnimatePresence>
-    </motion.nav>
+      </nav>
+
+      <style>{`
+        @media (min-width: 769px) {
+          .nav-mobile { display: none !important; }
+          .nav-mobile-menu { display: none !important; }
+        }
+        @media (max-width: 768px) {
+          .nav-desktop { display: none !important; }
+        }
+      `}</style>
+    </>
+  );
+}
+
+function NavLink({
+  link,
+  onClick,
+}: {
+  link: { label: string; href: string };
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+}) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <a
+      href={link.href}
+      onClick={(e) => onClick(e, link.href)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        textDecoration: "none",
+        color: hovered ? "var(--accent)" : "var(--text-secondary)",
+        fontSize: "0.875rem",
+        fontWeight: 500,
+        transition: "color 0.2s",
+      }}
+    >
+      {link.label}
+    </a>
   );
 }

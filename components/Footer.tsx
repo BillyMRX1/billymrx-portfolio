@@ -1,115 +1,67 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-  { href: "/resume", label: "Resume" },
-  { href: "/contact", label: "Contact" },
-  { href: "/blog", label: "Blog" },
-];
-
 const socialLinks = [
-  {
-    href: "https://github.com/BillyMRX1",
-    icon: FaGithub,
-    label: "GitHub",
-  },
-  {
-    href: "https://www.linkedin.com/in/brilianap",
-    icon: FaLinkedin,
-    label: "LinkedIn",
-  },
-  {
-    href: "https://twitter.com/BillyMRX1",
-    icon: FaTwitter,
-    label: "Twitter",
-  },
+  { href: "https://github.com/BillyMRX1", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/brilianap", label: "LinkedIn" },
+  { href: "https://medium.com/@brilianadeputra", label: "Medium" },
 ];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-black/30 backdrop-blur-sm border-t border-neon mt-20">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Navigation Links */}
-          <div>
-            <h3 className="text-lg font-bold text-neon mb-4">Navigation</h3>
-            <div className="grid grid-cols-2 gap-2">
-              {navLinks.map((link) => (
-                <motion.div
-                  key={link.href}
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Link
-                    href={link.href}
-                    className="text-text-secondary hover:text-neon transition-colors text-sm"
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+    <footer
+      style={{
+        borderTop: "1px solid var(--border)",
+        padding: "2.5rem 2rem",
+        background: "var(--bg)",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+        }}
+      >
+        <p style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>
+          © {year} Brilian Ade Putra. All rights reserved.
+        </p>
 
-          {/* Social Media */}
-          <div>
-            <h3 className="text-lg font-bold text-neon mb-4">Connect</h3>
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="text-text-secondary hover:text-neon transition-colors"
-                >
-                  <social.icon className="w-6 h-6" />
-                </motion.a>
-              ))}
-            </div>
-          </div>
-
-          {/* Branding */}
-          <div>
-            <h3 className="text-lg font-bold text-neon mb-4">About</h3>
-            <p className="text-text-secondary text-sm mb-2">
-              Brilian Ade Putra (Billy)
-            </p>
-            <p className="text-text-secondary text-sm">AI Engineer at Honda Japan</p>
-            <p className="text-text-secondary text-xs mt-2">Tokyo, Japan</p>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-gray-800 mb-6"></div>
-
-        {/* Copyright */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>
-            © {currentYear} Brilian Ade Putra. All rights reserved.
-          </p>
-          <motion.p
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-          >
-            Made with{" "}
-            <span className="text-neon">Next.js</span> and{" "}
-            <span className="text-neon">❤</span>
-          </motion.p>
+        <div style={{ display: "flex", gap: "1.5rem" }}>
+          {socialLinks.map((link) => (
+            <FooterLink key={link.href} href={link.href} label={link.label} />
+          ))}
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterLink({ href, label }: { href: string; label: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: "var(--text-secondary)",
+        textDecoration: "none",
+        fontSize: "0.8rem",
+        transition: "color 0.2s",
+      }}
+      onMouseEnter={(e) =>
+        ((e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)")
+      }
+      onMouseLeave={(e) =>
+        ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-secondary)")
+      }
+    >
+      {label}
+    </a>
   );
 }

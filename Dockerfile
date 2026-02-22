@@ -8,7 +8,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install pnpm
-RUN npm install -g pnpm
+RUN npm install -g pnpm@10.19.0
 
 # Copy dependency files
 COPY package.json pnpm-lock.yaml ./
@@ -40,7 +40,7 @@ ENV NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=$NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Build the application
-RUN npm install -g pnpm && pnpm build
+RUN npm install -g pnpm@10.19.0 && pnpm build
 
 # ===========================
 # Production Stage (Standalone)

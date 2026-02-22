@@ -1,19 +1,27 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import ThemeProvider from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ShellEnhancements from "@/components/ShellEnhancements";
-import GradientBlur from "@/components/GradientBlur";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 const siteUrl = "https://billymrx.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Brilian Ade Putra (Billy) - AI Engineer & Software Developer in Tokyo",
-    template: "%s | Brilian Ade Putra - AI Engineer"
+    default: "Brilian Ade Putra (Billy) — AI Engineer & Software Developer in Tokyo",
+    template: "%s | Brilian Ade Putra — AI Engineer",
   },
-  description: "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
+  description:
+    "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
   keywords: [
     "AI Engineer",
     "Machine Learning Engineer",
@@ -28,7 +36,7 @@ export const metadata: Metadata = {
     "Product Strategy",
     "Brilian Ade Putra",
     "Billy",
-    "BillyMRX"
+    "BillyMRX",
   ],
   authors: [{ name: "Brilian Ade Putra", url: "https://www.linkedin.com/in/brilianap" }],
   creator: "Brilian Ade Putra",
@@ -39,33 +47,35 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Brilian Ade Putra - AI Engineer",
-    title: "Brilian Ade Putra (Billy) - AI Engineer & Software Developer in Tokyo",
-    description: "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
+    siteName: "Brilian Ade Putra — AI Engineer",
+    title: "Brilian Ade Putra (Billy) — AI Engineer & Software Developer in Tokyo",
+    description:
+      "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
     images: [
       {
         url: `${siteUrl}/avatar.jpg`,
         width: 1200,
         height: 630,
-        alt: "Brilian Ade Putra - AI Engineer",
+        alt: "Brilian Ade Putra — AI Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brilian Ade Putra (Billy) - AI Engineer & Software Developer in Tokyo",
-    description: "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
+    title: "Brilian Ade Putra (Billy) — AI Engineer & Software Developer in Tokyo",
+    description:
+      "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
     images: [`${siteUrl}/avatar.jpg`],
-    creator: "@BillyMRX1",
+    creator: "@BillyMRX",
   },
   alternates: {
     canonical: siteUrl,
@@ -74,30 +84,30 @@ export const metadata: Metadata = {
     "geo.region": "JP-13",
     "geo.placename": "Tokyo",
     "geo.position": "35.6762;139.6503",
-    "ICBM": "35.6762, 139.6503",
+    ICBM: "35.6762, 139.6503",
   },
 };
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Brilian Ade Putra",
-  "alternateName": "Billy",
-  "url": siteUrl,
-  "image": `${siteUrl}/avatar.jpg`,
-  "jobTitle": "AI Engineer",
-  "worksFor": {
+  name: "Brilian Ade Putra",
+  alternateName: "Billy",
+  url: siteUrl,
+  image: `${siteUrl}/avatar.jpg`,
+  jobTitle: "AI Engineer",
+  worksFor: {
     "@type": "Organization",
-    "name": "Honda Motor Co., Ltd.",
-    "department": "AdvanceAI Strategy Planning Division"
+    name: "Honda Motor Co., Ltd.",
+    department: "AdvanceAI Strategy Planning Division",
   },
-  "address": {
+  address: {
     "@type": "PostalAddress",
-    "addressLocality": "Tokyo",
-    "addressCountry": "Japan"
+    addressLocality: "Tokyo",
+    addressCountry: "Japan",
   },
-  "alumniOf": "Artificial Intelligence and Product Engineering",
-  "knowsAbout": [
+  alumniOf: "Artificial Intelligence and Product Engineering",
+  knowsAbout: [
     "Artificial Intelligence",
     "Applied Machine Learning",
     "Generative AI",
@@ -106,47 +116,37 @@ const structuredData = {
     "Full Stack Development",
     "Next.js",
     "Python",
-    "Software Architecture"
+    "Software Architecture",
   ],
-  "sameAs": [
+  sameAs: [
     "https://www.linkedin.com/in/brilianap",
-    "https://github.com/BillyMRX1"
+    "https://github.com/BillyMRX1",
   ],
-  "seeks": {
+  seeks: {
     "@type": "Demand",
-    "description": "Job opportunities, freelance projects, and professional networking in Japan"
-  }
+    description:
+      "Job opportunities, freelance projects, and professional networking in Japan",
+  },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="relative bg-black text-white font-sans">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-neon focus:text-black focus:rounded-md focus:shadow-neon"
-        >
-          Skip to main content
-        </a>
-        <GradientBlur />
-        <ShellEnhancements />
-        <Navbar />
-        <main id="main-content">
-          {children}
-        </main>
-        <Footer />
+      <body className={inter.className}>
+        <ThemeProvider>
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
+          <Navbar />
+          <main id="main-content">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

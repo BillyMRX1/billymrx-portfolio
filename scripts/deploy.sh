@@ -1,4 +1,20 @@
 #!/usr/bin/env bash
+# =============================================================================
+# deploy.sh — Docker build and run script for billymrx-portfolio
+#
+# Usage:
+#   bash ./scripts/deploy.sh                  # Build image and start container
+#   ENV_FILE=.env bash ./scripts/deploy.sh    # Specify a custom .env file
+#   SKIP_BUILD=1 bash ./scripts/deploy.sh     # Skip the docker build step
+#   SKIP_RUN=1 bash ./scripts/deploy.sh       # Skip the container run step
+#
+# Required environment variables (via .env or pre-set):
+#   NEXT_PUBLIC_EMAILJS_SERVICE_ID
+#   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+#   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+#
+# If .env is missing but variables are pre-set (e.g. in CI), deployment proceeds.
+# =============================================================================
 set -euo pipefail
 
 # Configuration with sensible defaults; override via environment variables when needed.

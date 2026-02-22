@@ -2,26 +2,131 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light theme */
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Light Theme (default) ─────────────────────────────────────────────────── */
+:root,
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-alt: #f8fafc;
+  --text: #0f172a;
+  --text-secondary: #64748b;
+  --accent: #2563eb;
+  --accent-light: #eff6ff;
+  --accent-hover: #1d4ed8;
+  --border: #e2e8f0;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --card-hover: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-border-hover: var(--accent);
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --input-bg: #ffffff;
+  --tag-bg: #eff6ff;
+  --tag-text: #2563eb;
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Dark Theme ─────────────────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --bg-alt: #111111;
+  --text: #ededed;
+  --text-secondary: #888888;
+  --accent: #6366f1;
+  --accent-light: rgba(99, 102, 241, 0.12);
+  --accent-hover: #5558e6;
+  --border: #222222;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --card-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-border-hover: rgba(255, 255, 255, 0.2);
+  --nav-bg: rgba(10, 10, 10, 0.8);
+  --input-bg: #111111;
+  --tag-bg: rgba(99, 102, 241, 0.12);
+  --tag-text: #6366f1;
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Base ───────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ─── Utility Hover Classes ──────────────────────────────────────────────────── */
+.blog-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.blog-read-more:hover {
+  background: var(--accent-light);
+}
+
+/* ─── Skip Link ──────────────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 200;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--accent);
+  color: #fff;
 }

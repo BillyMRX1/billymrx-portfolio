@@ -82,6 +82,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Prevent horizontal scrolling caused by transforms (e.g. GSAP hero scale + rotate). */
+  overflow-x: hidden;
 }
 
 body {
@@ -89,7 +91,9 @@ body {
     system-ui, sans-serif;
   background-color: var(--bg);
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.55;
+  /* Belt + braces: also clip body in case any descendant escapes html overflow. */
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;

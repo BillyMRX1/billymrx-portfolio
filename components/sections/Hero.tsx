@@ -50,14 +50,14 @@ export default function Hero(): React.JSX.Element {
           </motion.span>
 
           <h1
-            className="mt-6 font-sans font-semibold text-[var(--text)] text-[clamp(56px,9vw,96px)] leading-[1.05] tracking-[-0.035em] [text-wrap:balance]"
+            className="mt-6 font-sans font-semibold text-[var(--text)] text-[clamp(40px,9vw,96px)] leading-[1.05] tracking-[-0.035em] [text-wrap:balance]"
           >
             Intelligence, shipped.
           </h1>
 
           <motion.p
             variants={fadeUp}
-            className="mt-6 max-w-2xl text-[clamp(18px,1.6vw,21px)] leading-[1.5] text-[var(--text-secondary)]"
+            className="mt-6 max-w-2xl text-[clamp(16px,1.6vw,21px)] leading-[1.5] text-[var(--text-secondary)]"
           >
             I&apos;m Brilian Ade Putra, an AI Engineer at Honda Japan. I design and deploy
             machine learning systems for real world products, from model training to the
@@ -91,11 +91,7 @@ export default function Hero(): React.JSX.Element {
           variants={fadeUp}
           className="mt-16 w-full max-w-[600px] will-change-transform"
         >
-          <LatentDrift
-            width={600}
-            height={400}
-            className="mx-auto w-full"
-          />
+          <LatentDrift className="mx-auto w-full" />
         </motion.div>
       </motion.div>
 

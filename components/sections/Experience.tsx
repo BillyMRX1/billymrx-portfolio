@@ -61,7 +61,7 @@ export default function Experience() {
     <section
       ref={scopeRef}
       id="experience"
-      className="relative bg-[var(--bg)] px-gutter py-section-y-lg"
+      className="relative bg-[var(--bg)] px-gutter py-20 md:py-section-y lg:py-section-y-lg"
     >
       <div className="mx-auto max-w-apple-wide">
         {/* Eyebrow */}
@@ -70,7 +70,7 @@ export default function Experience() {
         </span>
 
         {/* Display headline */}
-        <h2 className="mt-6 text-balance text-[clamp(40px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+        <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
           Where I&rsquo;ve worked.
         </h2>
 

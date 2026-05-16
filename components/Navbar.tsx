@@ -42,7 +42,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop links */}
-          <div className="nav-desktop flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <NavLink key={link.href} link={link} onClick={handleNavClick} />
             ))}
@@ -50,7 +50,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile: theme toggle + hamburger */}
-          <div className="nav-mobile flex items-center gap-3">
+          <div className="flex md:hidden items-center gap-3">
             <ThemeToggle />
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -81,14 +81,14 @@ export default function Navbar() {
         {/* Mobile dropdown */}
         {menuOpen && (
           <div
-            className="nav-mobile-menu flex flex-col gap-5 border-t border-[var(--separator)] bg-[var(--bg)] px-8 py-5"
+            className="flex md:hidden flex-col gap-2 border-t border-[var(--separator)] bg-[var(--bg)] px-8 py-3"
           >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-[0.9rem] font-medium text-[var(--text-secondary)] no-underline"
+                className="py-3 text-base font-medium text-[var(--text-secondary)] no-underline"
               >
                 {link.label}
               </a>
@@ -96,16 +96,6 @@ export default function Navbar() {
           </div>
         )}
       </nav>
-
-      <style>{`
-        @media (min-width: 769px) {
-          .nav-mobile { display: none !important; }
-          .nav-mobile-menu { display: none !important; }
-        }
-        @media (max-width: 768px) {
-          .nav-desktop { display: none !important; }
-        }
-      `}</style>
     </>
   );
 }

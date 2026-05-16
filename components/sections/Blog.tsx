@@ -17,13 +17,13 @@ export default async function Blog() {
       : "";
 
   return (
-    <section id="blog" className="bg-[var(--bg)] py-section-y-lg px-gutter">
+    <section id="blog" className="bg-[var(--bg)] py-20 md:py-section-y lg:py-section-y-lg px-gutter">
       <div className="mx-auto max-w-apple-wide">
         <FadeInWhenVisible>
           <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
             WRITING
           </span>
-          <h2 className="mt-6 text-balance text-[clamp(40px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+          <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
             From the blog.
           </h2>
           <p className="mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
@@ -44,7 +44,7 @@ export default async function Blog() {
                 <time className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
                   {formatDate(featured.pubDate)}
                 </time>
-                <h3 className="mt-4 text-balance text-[clamp(28px,3.5vw,40px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text)] transition-colors duration-[var(--dur-base)] ease-apple group-hover/featured:text-[var(--accent)]">
+                <h3 className="mt-4 text-balance text-[clamp(22px,3.5vw,40px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text)] transition-colors duration-[var(--dur-base)] ease-apple group-hover/featured:text-[var(--accent)]">
                   {featured.title}
                 </h3>
                 {featured.contentSnippet && (

@@ -26,14 +26,14 @@ export default async function Projects() {
   const rest = flat.filter((p) => !featuredSet.has(p.title));
 
   return (
-    <section id="projects" className="bg-[var(--bg)] py-section-y-lg px-gutter">
+    <section id="projects" className="bg-[var(--bg)] py-20 md:py-section-y lg:py-section-y-lg px-gutter">
       {/* Section header */}
       <div className="mx-auto max-w-apple-wide">
         <FadeInWhenVisible>
           <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
             PROJECTS
           </span>
-          <h2 className="mt-6 text-balance text-[clamp(40px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+          <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
             Things I&apos;ve built.
           </h2>
           <p className="mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
@@ -47,7 +47,7 @@ export default async function Projects() {
         {featured.map((project, i) => (
           <FadeInWhenVisible key={project.title}>
             <article
-              className={`flex min-h-[80vh] items-center justify-center px-gutter ${
+              className={`flex min-h-[60vh] md:min-h-[80vh] items-center justify-center px-gutter ${
                 i > 0 ? "border-t border-[var(--separator)]" : ""
               }`}
             >
@@ -55,7 +55,7 @@ export default async function Projects() {
                 <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
                   {project.category}
                 </span>
-                <h3 className="mt-8 text-balance text-[clamp(48px,7vw,96px)] font-semibold leading-[1.04] tracking-[-0.03em] text-[var(--text)]">
+                <h3 className="mt-8 text-balance text-[clamp(36px,7vw,96px)] font-semibold leading-[1.04] tracking-[-0.03em] text-[var(--text)]">
                   {project.title}
                 </h3>
                 <p className="mx-auto mt-8 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
@@ -116,16 +116,18 @@ export default async function Projects() {
 
 function ProjectListRow({ project }: { project: Project }) {
   return (
-    <div className="group/row -mx-4 grid items-baseline gap-4 rounded px-4 py-6 transition-colors duration-[var(--dur-base)] ease-apple hover:bg-[var(--surface)] md:grid-cols-[140px_1fr_auto]">
-      <span className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+    <div className="group/row -mx-4 rounded px-4 py-4 transition-colors duration-[var(--dur-base)] ease-apple hover:bg-[var(--surface)] md:grid md:grid-cols-[140px_1fr_auto] md:items-baseline md:gap-4 md:py-6">
+      <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
         {project.category}
       </span>
-      <span className="text-[17px] font-medium text-[var(--text)]">
-        {project.title}
-      </span>
-      <span className="text-[var(--accent)] transition-transform duration-[var(--dur-base)] ease-apple group-hover/row:translate-x-1">
-        →
-      </span>
+      <div className="mt-1 flex items-baseline justify-between gap-3 md:mt-0 md:contents">
+        <span className="text-[17px] font-medium text-[var(--text)]">
+          {project.title}
+        </span>
+        <span className="text-[var(--accent)] transition-transform duration-[var(--dur-base)] ease-apple group-hover/row:translate-x-1">
+          →
+        </span>
+      </div>
     </div>
   );
 }

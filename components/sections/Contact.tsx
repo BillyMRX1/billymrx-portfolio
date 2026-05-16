@@ -23,14 +23,14 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="bg-[var(--bg)] py-section-y-lg px-gutter"
+      className="bg-[var(--bg)] py-20 md:py-section-y lg:py-section-y-lg px-gutter"
     >
       <div className="mx-auto max-w-apple text-center">
         <FadeInWhenVisible>
           <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
             CONTACT
           </span>
-          <h2 className="mt-6 text-balance text-[clamp(40px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+          <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
             Let&apos;s build something.
           </h2>
           <p className="mx-auto mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">

@@ -16,7 +16,7 @@ export default function ExperienceItem({
   tech,
 }: ExperienceItemProps) {
   return (
-    <article className="exp-item group relative rounded-2xl border border-[var(--separator)] bg-[var(--surface-elevated)] p-8 transition-all duration-[var(--dur-base)] ease-apple hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]">
+    <article className="exp-item group relative rounded-2xl border border-[var(--separator)] bg-[var(--surface-elevated)] p-6 md:p-8 transition-all duration-[var(--dur-base)] ease-apple hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]">
       {/* Timeline dot — sits over the rail at left */}
       <span
         aria-hidden

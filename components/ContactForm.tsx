@@ -23,18 +23,12 @@ const loadEmailClient = () => {
   return emailClientPromise;
 };
 
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  padding: "0.75rem 1rem",
-  border: "1px solid var(--border)",
-  borderRadius: "8px",
-  fontFamily: "inherit",
-  fontSize: "0.9rem",
-  background: "var(--input-bg)",
-  color: "var(--text)",
-  outline: "none",
-  transition: "border-color 0.2s, box-shadow 0.2s",
-};
+const inputClass =
+  "w-full px-4 py-3 border border-[var(--border)] rounded-lg font-[inherit] text-[0.9rem] bg-[var(--input-bg)] text-[var(--text)] outline-none transition-[border-color,box-shadow] duration-200 focus:border-[var(--accent)] focus:shadow-[0_0_0_3px_var(--accent-light)]";
+
+const labelClass = "block text-[0.8rem] font-medium mb-[0.4rem] text-[var(--text)]";
+
+const errorClass = "text-[#ef4444] text-[0.8rem] mt-[0.3rem]";
 
 export default function ContactForm() {
   const {
@@ -69,53 +63,27 @@ export default function ContactForm() {
     }
   };
 
+  const isLoading = status === "loading";
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
       <div>
-        <label
-          htmlFor="from_name"
-          style={{
-            display: "block",
-            fontSize: "0.8rem",
-            fontWeight: 500,
-            marginBottom: "0.4rem",
-            color: "var(--text)",
-          }}
-        >
+        <label htmlFor="from_name" className={labelClass}>
           Name
         </label>
         <input
           id="from_name"
           {...register("from_name")}
           placeholder="Your name"
-          style={inputStyle}
-          onFocus={(e) => {
-            (e.target as HTMLInputElement).style.borderColor = "var(--accent)";
-            (e.target as HTMLInputElement).style.boxShadow = "0 0 0 3px var(--accent-light)";
-          }}
-          onBlur={(e) => {
-            (e.target as HTMLInputElement).style.borderColor = "var(--border)";
-            (e.target as HTMLInputElement).style.boxShadow = "none";
-          }}
+          className={inputClass}
         />
-        {errors.from_name && (
-          <p style={{ color: "#ef4444", fontSize: "0.8rem", marginTop: "0.3rem" }}>
-            {errors.from_name.message}
-          </p>
-        )}
+        {errors.from_name ? (
+          <p className={errorClass}>{errors.from_name.message}</p>
+        ) : null}
       </div>
 
       <div>
-        <label
-          htmlFor="from_email"
-          style={{
-            display: "block",
-            fontSize: "0.8rem",
-            fontWeight: 500,
-            marginBottom: "0.4rem",
-            color: "var(--text)",
-          }}
-        >
+        <label htmlFor="from_email" className={labelClass}>
           Email
         </label>
         <input
@@ -123,34 +91,15 @@ export default function ContactForm() {
           {...register("from_email")}
           placeholder="your@email.com"
           type="email"
-          style={inputStyle}
-          onFocus={(e) => {
-            (e.target as HTMLInputElement).style.borderColor = "var(--accent)";
-            (e.target as HTMLInputElement).style.boxShadow = "0 0 0 3px var(--accent-light)";
-          }}
-          onBlur={(e) => {
-            (e.target as HTMLInputElement).style.borderColor = "var(--border)";
-            (e.target as HTMLInputElement).style.boxShadow = "none";
-          }}
+          className={inputClass}
         />
-        {errors.from_email && (
-          <p style={{ color: "#ef4444", fontSize: "0.8rem", marginTop: "0.3rem" }}>
-            {errors.from_email.message}
-          </p>
-        )}
+        {errors.from_email ? (
+          <p className={errorClass}>{errors.from_email.message}</p>
+        ) : null}
       </div>
 
       <div>
-        <label
-          htmlFor="message"
-          style={{
-            display: "block",
-            fontSize: "0.8rem",
-            fontWeight: 500,
-            marginBottom: "0.4rem",
-            color: "var(--text)",
-          }}
-        >
+        <label htmlFor="message" className={labelClass}>
           Message
         </label>
         <textarea
@@ -158,82 +107,34 @@ export default function ContactForm() {
           {...register("message")}
           placeholder="What's on your mind?"
           rows={5}
-          style={{ ...inputStyle, resize: "vertical", minHeight: "120px" }}
-          onFocus={(e) => {
-            (e.target as HTMLTextAreaElement).style.borderColor = "var(--accent)";
-            (e.target as HTMLTextAreaElement).style.boxShadow = "0 0 0 3px var(--accent-light)";
-          }}
-          onBlur={(e) => {
-            (e.target as HTMLTextAreaElement).style.borderColor = "var(--border)";
-            (e.target as HTMLTextAreaElement).style.boxShadow = "none";
-          }}
+          className={`${inputClass} resize-y min-h-[120px]`}
         />
-        {errors.message && (
-          <p style={{ color: "#ef4444", fontSize: "0.8rem", marginTop: "0.3rem" }}>
-            {errors.message.message}
-          </p>
-        )}
+        {errors.message ? (
+          <p className={errorClass}>{errors.message.message}</p>
+        ) : null}
       </div>
 
       <button
         type="submit"
-        disabled={status === "loading"}
-        style={{
-          padding: "0.75rem 2rem",
-          background: "var(--accent)",
-          color: "white",
-          border: "none",
-          borderRadius: "8px",
-          fontFamily: "inherit",
-          fontSize: "0.9rem",
-          fontWeight: 500,
-          cursor: status === "loading" ? "not-allowed" : "pointer",
-          opacity: status === "loading" ? 0.6 : 1,
-          transition: "background 0.2s, opacity 0.2s",
-          alignSelf: "flex-start",
-        }}
-        onMouseEnter={(e) => {
-          if (status !== "loading")
-            (e.currentTarget as HTMLButtonElement).style.background = "var(--accent-hover)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.background = "var(--accent)";
-        }}
+        disabled={isLoading}
+        className={`px-8 py-3 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white border-none rounded-lg font-[inherit] text-[0.9rem] font-medium transition-[background,opacity] duration-200 self-start ${
+          isLoading ? "cursor-not-allowed opacity-60 hover:bg-[var(--accent)]" : "cursor-pointer"
+        }`}
       >
-        {status === "loading" ? "Sending..." : "Send message"}
+        {isLoading ? "Sending..." : "Send message"}
       </button>
 
-      {status === "success" && (
-        <div
-          style={{
-            padding: "0.875rem 1rem",
-            borderRadius: "8px",
-            background: "rgba(34, 197, 94, 0.1)",
-            border: "1px solid rgba(34, 197, 94, 0.3)",
-            color: "#16a34a",
-            fontSize: "0.875rem",
-            fontWeight: 500,
-          }}
-        >
+      {status === "success" ? (
+        <div className="px-4 py-[0.875rem] rounded-lg bg-[rgba(34,197,94,0.1)] border border-[rgba(34,197,94,0.3)] text-[#16a34a] text-sm font-medium">
           Message sent! I will get back to you soon.
         </div>
-      )}
+      ) : null}
 
-      {status === "error" && (
-        <div
-          style={{
-            padding: "0.875rem 1rem",
-            borderRadius: "8px",
-            background: "rgba(239, 68, 68, 0.1)",
-            border: "1px solid rgba(239, 68, 68, 0.3)",
-            color: "#dc2626",
-            fontSize: "0.875rem",
-            fontWeight: 500,
-          }}
-        >
+      {status === "error" ? (
+        <div className="px-4 py-[0.875rem] rounded-lg bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.3)] text-[#dc2626] text-sm font-medium">
           Something went wrong. Please try again.
         </div>
-      )}
+      ) : null}
     </form>
   );
 }

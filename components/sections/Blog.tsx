@@ -1,53 +1,98 @@
 import { getMediumPosts } from "@/lib/getMediumPosts";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
-import SectionHeader from "@/components/ui/SectionHeader";
 import BlogItem from "@/components/ui/BlogItem";
 
 export default async function Blog() {
   const posts = await getMediumPosts();
+  const featured = posts[0];
+  const rest = posts.slice(1, 6);
+
+  const formatDate = (d: string) =>
+    d
+      ? new Date(d).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      : "";
 
   return (
-    <section
-      id="blog"
-      style={{
-        maxWidth: "1100px",
-        margin: "0 auto",
-        padding: "5rem 2rem",
-      }}
-    >
-      <FadeInWhenVisible>
-        <SectionHeader
-          label="Writing"
-          title="From the blog."
-          description="Thoughts on AI engineering, building products, and lessons from the field."
-        />
-      </FadeInWhenVisible>
+    <section id="blog" className="bg-[var(--bg)] py-section-y-lg px-gutter">
+      <div className="mx-auto max-w-apple-wide">
+        <FadeInWhenVisible>
+          <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+            WRITING
+          </span>
+          <h2 className="mt-6 text-balance text-[clamp(40px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+            From the blog.
+          </h2>
+          <p className="mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
+            Thoughts on AI engineering, building products, and lessons from the field.
+          </p>
+        </FadeInWhenVisible>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-        {posts.slice(0, 6).map((post, index) => (
-          <FadeInWhenVisible key={post.link} delay={index * 0.05}>
-            <BlogItem
-              title={post.title}
-              date={post.pubDate}
-              link={post.link}
-              snippet={post.contentSnippet}
-            />
+        {/* Featured post */}
+        {featured && (
+          <FadeInWhenVisible>
+            <article className="mt-20">
+              <a
+                href={featured.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/featured block"
+              >
+                <time className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+                  {formatDate(featured.pubDate)}
+                </time>
+                <h3 className="mt-4 text-balance text-[clamp(28px,3.5vw,40px)] font-semibold leading-[1.15] tracking-[-0.02em] text-[var(--text)] transition-colors duration-[var(--dur-base)] ease-apple group-hover/featured:text-[var(--accent)]">
+                  {featured.title}
+                </h3>
+                {featured.contentSnippet && (
+                  <p className="mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)] line-clamp-3">
+                    {featured.contentSnippet}
+                  </p>
+                )}
+                <span className="mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-[var(--accent)]">
+                  Read on Medium{" "}
+                  <span className="transition-transform duration-[var(--dur-base)] ease-apple group-hover/featured:translate-x-1">
+                    →
+                  </span>
+                </span>
+              </a>
+            </article>
           </FadeInWhenVisible>
-        ))}
-      </div>
+        )}
 
-      <FadeInWhenVisible delay={0.3}>
-        <div style={{ marginTop: "2.5rem", textAlign: "center" }}>
-          <a
-            href="https://medium.com/@brilianadeputra"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="blog-read-more"
-          >
-            Read more on Medium →
-          </a>
-        </div>
-      </FadeInWhenVisible>
+        {/* Rest of list */}
+        {rest.length > 0 && (
+          <FadeInWhenVisible>
+            <ul className="mt-20 border-t border-[var(--separator)]">
+              {rest.map((post) => (
+                <BlogItem
+                  key={post.link}
+                  title={post.title}
+                  date={post.pubDate}
+                  link={post.link}
+                  snippet={post.contentSnippet}
+                />
+              ))}
+            </ul>
+          </FadeInWhenVisible>
+        )}
+
+        <FadeInWhenVisible>
+          <div className="mt-16 text-center">
+            <a
+              href="https://medium.com/@brilianadeputra"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[15px] font-medium text-[var(--accent)] hover:underline"
+            >
+              Read more on Medium →
+            </a>
+          </div>
+        </FadeInWhenVisible>
+      </div>
     </section>
   );
 }

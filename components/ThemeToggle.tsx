@@ -9,28 +9,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "36px",
-        height: "36px",
-        borderRadius: "8px",
-        border: "1px solid var(--border)",
-        background: "transparent",
-        color: "var(--text-secondary)",
-        cursor: "pointer",
-        transition: "all 0.2s ease",
-        flexShrink: 0,
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.color = "var(--accent)";
-        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--accent)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.color = "var(--text-secondary)";
-        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--border)";
-      }}
+      className="flex items-center justify-center w-9 h-9 rounded-lg border border-[var(--border)] hover:border-[var(--accent)] bg-transparent text-[var(--text-secondary)] hover:text-[var(--accent)] cursor-pointer transition-all duration-200 flex-shrink-0"
     >
       {theme === "light" ? (
         // Moon icon

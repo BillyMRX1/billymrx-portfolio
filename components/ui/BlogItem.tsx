@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 interface BlogItemProps {
   title: string;
   date: string;
@@ -10,76 +6,36 @@ interface BlogItemProps {
 }
 
 export default function BlogItem({ title, date, link, snippet }: BlogItemProps) {
-  const [hovered, setHovered] = useState(false);
-
   const formatted = date
-    ? new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+    ? new Date(date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
     : "";
 
   return (
-    <a
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "baseline",
-        padding: "1.25rem 1.5rem",
-        borderRadius: "10px",
-        border: `1px solid ${hovered ? "var(--border)" : "transparent"}`,
-        background: hovered ? "var(--bg)" : "transparent",
-        boxShadow: hovered ? "var(--card-shadow)" : "none",
-        transition: "all 0.2s ease",
-        textDecoration: "none",
-        color: "var(--text)",
-        gap: "1rem",
-      }}
-      className="blog-item"
-    >
-      <div>
-        <div
-          style={{
-            fontWeight: 600,
-            fontSize: "1rem",
-            color: "var(--text)",
-            marginBottom: snippet ? "0.25rem" : 0,
-          }}
-        >
-          {title}
-        </div>
-        {snippet && (
-          <div
-            style={{
-              fontSize: "0.8rem",
-              color: "var(--text-secondary)",
-              overflow: "hidden",
-              display: "-webkit-box",
-              WebkitLineClamp: 1,
-              WebkitBoxOrient: "vertical",
-            }}
-          >
-            {snippet}
-          </div>
-        )}
-      </div>
-      <div
-        style={{
-          fontSize: "0.8rem",
-          color: "var(--text-secondary)",
-          whiteSpace: "nowrap",
-          flexShrink: 0,
-        }}
+    <li className="border-b border-[var(--separator)]">
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group/post grid gap-2 py-6 md:grid-cols-[1fr_140px] md:items-baseline md:gap-4"
       >
-        {formatted}
-      </div>
-      <style>{`
-        @media (max-width: 640px) {
-          .blog-item { flex-direction: column !important; gap: 0.25rem !important; }
-        }
-      `}</style>
-    </a>
+        <div>
+          <h4 className="text-[19px] font-semibold leading-[1.3] text-[var(--text)] transition-colors duration-[var(--dur-base)] ease-apple group-hover/post:text-[var(--accent)]">
+            {title}
+          </h4>
+          {snippet ? (
+            <p className="mt-2 max-w-prose text-[15px] text-[var(--text-secondary)] line-clamp-2">
+              {snippet}
+            </p>
+          ) : null}
+        </div>
+        <time className="text-[15px] tabular-nums text-[var(--text-tertiary)] md:text-right">
+          {formatted}
+        </time>
+      </a>
+    </li>
   );
 }

@@ -1,98 +1,63 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { useRef } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { useHeroScroll } from "@/components/hooks/useHeroScroll";
+import LatentDrift from "@/components/hero/LatentDrift";
+import { scrollToSection } from "@/lib/scrollToSection";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay },
-  }),
+// Apple "expo-out" curve matches `--ease-apple`. Single source of truth so
+// stagger timing reads identically on every child.
+const APPLE_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: APPLE_EASE } },
 };
 
-export default function Hero() {
-  const handleScroll = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 72;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
+const container: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+};
+
+export default function Hero(): React.JSX.Element {
+  const scopeRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  useHeroScroll(scopeRef);
+
+  // When reduced-motion is on, render everything fully visible immediately
+  // (skip the stagger entirely rather than relying on the global `*` reset).
+  const initialState = reduced ? "visible" : "hidden";
 
   return (
     <section
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        maxWidth: "1100px",
-        margin: "0 auto",
-        padding: "0 2rem",
-        paddingTop: "64px",
-      }}
+      id="hero"
+      ref={scopeRef}
+      className="relative min-h-screen flex items-center justify-center px-gutter py-24"
     >
-      <div
-        className="hero-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr auto",
-          gap: "4rem",
-          alignItems: "center",
-        }}
+      <motion.div
+        variants={container}
+        initial={initialState}
+        animate="visible"
+        className="mx-auto max-w-apple w-full flex flex-col items-center text-center"
       >
-        {/* Left: text content */}
-        <div>
-          <motion.div
+        <div id="hero-copy" className="flex flex-col items-center will-change-transform">
+          <motion.span
             variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            style={{
-              fontSize: "0.875rem",
-              fontWeight: 500,
-              color: "var(--accent)",
-              marginBottom: "1rem",
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-            }}
+            className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]"
           >
             AI Engineer · Tokyo, Japan
-          </motion.div>
+          </motion.span>
 
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0.1}
-            style={{
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 700,
-              lineHeight: 1.15,
-              letterSpacing: "-0.03em",
-              marginBottom: "1.5rem",
-              color: "var(--text)",
-            }}
+          <h1
+            className="mt-6 font-sans font-semibold text-[var(--text)] text-[clamp(56px,9vw,96px)] leading-[1.05] tracking-[-0.035em] [text-wrap:balance]"
           >
-            I build intelligent
-            <br />
-            products that ship.
-          </motion.h1>
+            Intelligence, shipped.
+          </h1>
 
           <motion.p
             variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0.2}
-            style={{
-              fontSize: "1.2rem",
-              color: "var(--text-secondary)",
-              maxWidth: "580px",
-              lineHeight: 1.8,
-              marginBottom: "2rem",
-            }}
+            className="mt-6 max-w-2xl text-[clamp(18px,1.6vw,21px)] leading-[1.5] text-[var(--text-secondary)]"
           >
             I&apos;m Brilian Ade Putra, an AI Engineer at Honda Japan. I design and deploy
             machine learning systems for real world products, from model training to the
@@ -101,174 +66,49 @@ export default function Hero() {
 
           <motion.div
             variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0.3}
-            style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
             <button
-              onClick={() => handleScroll("contact")}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.75rem 1.6rem",
-                borderRadius: "8px",
-                fontSize: "0.9rem",
-                fontWeight: 500,
-                background: "var(--accent)",
-                color: "#fff",
-                border: "none",
-                cursor: "pointer",
-                transition: "background 0.2s",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.background = "var(--accent-hover)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.background = "var(--accent)")
-              }
+              type="button"
+              onClick={() => scrollToSection("contact")}
+              className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-[17px] font-medium text-white transition-colors duration-[400ms] ease-apple hover:bg-[var(--accent-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
             >
               Get in touch
             </button>
-
             <a
               href="/resume.pdf"
               download
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.75rem 1.6rem",
-                borderRadius: "8px",
-                fontSize: "0.9rem",
-                fontWeight: 500,
-                border: "1px solid var(--border)",
-                color: "var(--text)",
-                background: "transparent",
-                cursor: "pointer",
-                transition: "all 0.2s",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent)";
-                (e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border)";
-                (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
-              }}
+              className="inline-flex items-center justify-center rounded-full px-6 py-3 text-[17px] font-medium text-[var(--accent)] transition-opacity duration-[400ms] ease-apple hover:underline hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
             >
-              ↓ Resume
-            </a>
-
-            <a
-              href="https://github.com/BillyMRX1"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.75rem 1.6rem",
-                borderRadius: "8px",
-                fontSize: "0.9rem",
-                fontWeight: 500,
-                border: "1px solid var(--border)",
-                color: "var(--text)",
-                background: "transparent",
-                cursor: "pointer",
-                transition: "all 0.2s",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent)";
-                (e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border)";
-                (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
-              }}
-            >
-              GitHub
+              <span aria-hidden="true">↓</span>
+              <span className="ml-1">Resume</span>
             </a>
           </motion.div>
         </div>
 
-        {/* Right: profile photo — hidden on mobile */}
-        <div
-          className="hero-photo-col"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+        <motion.div
+          id="hero-artifact"
+          variants={fadeUp}
+          className="mt-16 w-full max-w-[600px] will-change-transform"
         >
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
-            style={{
-              width: 260,
-              height: 260,
-              borderRadius: "50%",
-              overflow: "hidden",
-              border: "2px solid rgba(99, 102, 241, 0.25)",
-              boxShadow: "0 0 0 6px rgba(99, 102, 241, 0.08)",
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src="/avatar.jpg"
-              alt="Brilian Ade Putra"
-              width={260}
-              height={260}
-              priority
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            />
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        style={{
-          position: "absolute",
-          bottom: "2rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-          color: "var(--text-secondary)",
-          fontSize: "0.75rem",
-          cursor: "pointer",
-        }}
-        onClick={() => handleScroll("about")}
-      >
-        <span>scroll</span>
-        <motion.span
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          ↓
-        </motion.span>
+          <LatentDrift
+            width={600}
+            height={400}
+            className="mx-auto w-full"
+          />
+        </motion.div>
       </motion.div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .hero-photo-col {
-            display: none !important;
-          }
-        }
-      `}</style>
+      <motion.div
+        aria-hidden="true"
+        initial={reduced ? { opacity: 1 } : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8, ease: APPLE_EASE }}
+        className="pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[12px] tracking-[0.08em] uppercase text-[var(--text-tertiary)]"
+      >
+        <span>scroll</span>
+        <span className="animate-pulse">↓</span>
+      </motion.div>
     </section>
   );
 }

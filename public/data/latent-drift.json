@@ -1,0 +1,16 @@
+{
+  "clusters": [
+    { "id": 0,  "cx": 0.22, "cy": 0.34, "radius": 0.07,  "count": 120 },
+    { "id": 1,  "cx": 0.52, "cy": 0.28, "radius": 0.11,  "count": 130 },
+    { "id": 2,  "cx": 0.78, "cy": 0.22, "radius": 0.055, "count": 70  },
+    { "id": 3,  "cx": 0.83, "cy": 0.46, "radius": 0.09,  "count": 110 },
+    { "id": 4,  "cx": 0.66, "cy": 0.58, "radius": 0.13,  "count": 150 },
+    { "id": 5,  "cx": 0.41, "cy": 0.62, "radius": 0.085, "count": 105 },
+    { "id": 6,  "cx": 0.18, "cy": 0.70, "radius": 0.10,  "count": 115 },
+    { "id": 7,  "cx": 0.30, "cy": 0.86, "radius": 0.06,  "count": 80  },
+    { "id": 8,  "cx": 0.58, "cy": 0.84, "radius": 0.075, "count": 95  },
+    { "id": 9,  "cx": 0.86, "cy": 0.78, "radius": 0.05,  "count": 65  },
+    { "id": 10, "cx": 0.09, "cy": 0.46, "radius": 0.045, "count": 60  },
+    { "id": 11, "cx": 0.48, "cy": 0.46, "radius": 0.14,  "count": 100 }
+  ]
+}

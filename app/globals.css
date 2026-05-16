@@ -2,47 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Light Theme (default) ─────────────────────────────────────────────────── */
+/* ─── Light Theme — "Studio at 11am" ────────────────────────────────────────── */
 :root,
 [data-theme="light"] {
-  --bg: #ffffff;
-  --bg-alt: #f8fafc;
-  --text: #0f172a;
-  --text-secondary: #64748b;
-  --accent: #2563eb;
-  --accent-light: #eff6ff;
-  --accent-hover: #1d4ed8;
-  --border: #e2e8f0;
+  /* Apple-direction tokens */
+  --bg: #fbfbfd;
+  --surface: #f5f5f7;
+  --surface-elevated: #ffffff;
+  --text: #1d1d1f;
+  --text-secondary: #424245;
+  --text-tertiary: #8a8a8f;
+  --accent: #0071e3; /* Apple buy-blue */
+  --accent-hover: #0077ed;
+  --separator: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(251, 251, 253, 0.72);
+  --glass-border: rgba(0, 0, 0, 0.06);
+
+  /* Back-compat aliases for components not yet migrated to new tokens */
+  --bg-alt: var(--surface);
+  --accent-light: rgba(0, 113, 227, 0.08);
+  --border: var(--separator);
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --card-hover: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --card-bg: #ffffff;
-  --card-border: #e2e8f0;
+  --card-hover: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --card-bg: var(--surface-elevated);
+  --card-border: var(--separator);
   --card-border-hover: var(--accent);
-  --nav-bg: rgba(255, 255, 255, 0.85);
-  --input-bg: #ffffff;
-  --tag-bg: #eff6ff;
-  --tag-text: #2563eb;
+  --nav-bg: var(--glass-bg);
+  --input-bg: var(--surface-elevated);
+  --tag-bg: rgba(0, 113, 227, 0.08);
+  --tag-text: var(--accent);
 }
 
-/* ─── Dark Theme ─────────────────────────────────────────────────────────────── */
+/* ─── Dark Theme — "OLED at midnight" ───────────────────────────────────────── */
 [data-theme="dark"] {
-  --bg: #0a0a0a;
-  --bg-alt: #111111;
-  --text: #ededed;
-  --text-secondary: #888888;
-  --accent: #6366f1;
-  --accent-light: rgba(99, 102, 241, 0.12);
-  --accent-hover: #5558e6;
-  --border: #222222;
+  --bg: #000000; /* true black for OLED */
+  --surface: #1d1d1f;
+  --surface-elevated: #2a2a2c;
+  --text: #f5f5f7;
+  --text-secondary: #a1a1a6;
+  --text-tertiary: #8a8a8f;
+  --accent: #0a84ff; /* Apple dark-mode link blue */
+  --accent-hover: #1a8eff;
+  --separator: rgba(255, 255, 255, 0.10);
+  --glass-bg: rgba(29, 29, 31, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.10);
+
+  /* Back-compat aliases */
+  --bg-alt: var(--surface);
+  --accent-light: rgba(41, 151, 255, 0.14);
+  --border: var(--separator);
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   --card-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --card-border: rgba(255, 255, 255, 0.1);
+  --card-bg: var(--surface);
+  --card-border: var(--separator);
   --card-border-hover: rgba(255, 255, 255, 0.2);
-  --nav-bg: rgba(10, 10, 10, 0.8);
-  --input-bg: #111111;
-  --tag-bg: rgba(99, 102, 241, 0.12);
-  --tag-text: #6366f1;
+  --nav-bg: var(--glass-bg);
+  --input-bg: var(--surface);
+  --tag-bg: rgba(41, 151, 255, 0.14);
+  --tag-text: var(--accent);
+}
+
+/* ─── Motion Tokens ──────────────────────────────────────────────────────────── */
+:root {
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1); /* expo-out, signature */
+  --ease-glide: cubic-bezier(0.32, 0.72, 0, 1); /* sheet / hand-off */
+  --dur-fast: 200ms;
+  --dur-base: 400ms;
+  --dur-slow: 800ms;
 }
 
 /* ─── Base ───────────────────────────────────────────────────────────────────── */
@@ -59,7 +85,8 @@ html {
 }
 
 body {
-  font-family: var(--font-inter, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter",
+    system-ui, sans-serif;
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -129,4 +156,24 @@ body {
 ::selection {
   background: var(--accent);
   color: #fff;
+}
+
+/* ─── Liquid Glass ───────────────────────────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+  }
 }

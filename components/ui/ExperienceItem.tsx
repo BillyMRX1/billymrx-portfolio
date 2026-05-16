@@ -1,127 +1,49 @@
-"use client";
-
-import { useState } from "react";
-import SkillTag from "./SkillTag";
-
 interface ExperienceItemProps {
   date: string;
   role: string;
   company: string;
+  location: string;
   description: string;
   tech: string[];
 }
 
-export default function ExperienceItem({ date, role, company, description, tech }: ExperienceItemProps) {
-  const [hovered, setHovered] = useState(false);
-
+export default function ExperienceItem({
+  date,
+  role,
+  company,
+  location,
+  description,
+  tech,
+}: ExperienceItemProps) {
   return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: "grid",
-        gridTemplateColumns: "180px 1fr",
-        gap: "2rem",
-        padding: "1.75rem",
-        borderRadius: "12px",
-        border: `1px solid ${hovered ? "var(--border)" : "transparent"}`,
-        background: hovered ? "var(--bg)" : "transparent",
-        boxShadow: hovered ? "var(--card-hover)" : "none",
-        transition: "all 0.25s ease",
-      }}
-      className="exp-item"
-    >
-      {/* Left column — date + timeline indicator */}
-      <div
-        style={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
-        {/* Timeline dot */}
-        <div
-          style={{
-            width: "8px",
-            height: "8px",
-            borderRadius: "50%",
-            background: "var(--accent)",
-            marginTop: "0.35rem",
-            marginBottom: "0.5rem",
-            flexShrink: 0,
-            boxShadow: hovered ? "0 0 0 3px var(--accent-subtle, rgba(99,102,241,0.15))" : "none",
-            transition: "box-shadow 0.25s ease",
-          }}
-        />
-        {/* Date label */}
-        <div
-          style={{
-            fontSize: "0.8rem",
-            color: "var(--text-secondary)",
-            fontWeight: 500,
-            lineHeight: 1.5,
-            marginBottom: "0.5rem",
-          }}
-        >
-          {date}
-        </div>
-        {/* Vertical timeline line */}
-        <div
-          style={{
-            flex: 1,
-            width: "1px",
-            background: "var(--border)",
-            marginLeft: "3.5px",
-            opacity: 0.6,
-          }}
-        />
-      </div>
+    <article className="exp-item group relative rounded-2xl border border-[var(--separator)] bg-[var(--surface-elevated)] p-8 transition-all duration-[var(--dur-base)] ease-apple hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]">
+      {/* Timeline dot — sits over the rail at left */}
+      <span
+        aria-hidden
+        className="absolute -left-[37px] top-9 h-2 w-2 rounded-full bg-[var(--accent)] ring-4 ring-[var(--bg)] transition-shadow duration-[var(--dur-base)] ease-apple group-hover:shadow-[0_0_0_4px_color-mix(in_oklab,var(--accent)_20%,transparent)]"
+      />
 
-      {/* Right column — content */}
-      <div>
-        <div
-          style={{
-            fontWeight: 600,
-            fontSize: "1rem",
-            color: "var(--text)",
-            marginBottom: "0.25rem",
-          }}
-        >
-          {role}
-        </div>
-        <div
-          style={{
-            color: "var(--text-secondary)",
-            fontSize: "0.9rem",
-            marginBottom: "0.5rem",
-          }}
-        >
-          {company}
-        </div>
-        <p
-          style={{
-            color: "var(--text-secondary)",
-            fontSize: "0.875rem",
-            lineHeight: 1.7,
-          }}
-        >
-          {description}
+      <time className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+        {date}
+      </time>
+
+      <h3 className="mt-3 text-[24px] font-semibold leading-[1.25] tracking-[-0.012em] text-[var(--text)]">
+        {role}
+      </h3>
+
+      <p className="mt-1 text-[17px] text-[var(--text-secondary)]">
+        {company} <span className="text-[var(--text-tertiary)]">·</span> {location}
+      </p>
+
+      <p className="mt-5 max-w-prose text-[17px] leading-[1.55] text-[var(--text-secondary)]">
+        {description}
+      </p>
+
+      {tech.length > 0 && (
+        <p className="mt-5 text-[14px] text-[var(--text-tertiary)]">
+          {tech.join(" · ")}
         </p>
-        {tech.length > 0 && (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginTop: "0.75rem" }}>
-            {tech.map((t) => (
-              <SkillTag key={t} name={t} small />
-            ))}
-          </div>
-        )}
-      </div>
-
-      <style>{`
-        @media (max-width: 640px) {
-          .exp-item { grid-template-columns: 1fr !important; gap: 0.25rem !important; }
-        }
-      `}</style>
-    </div>
+      )}
+    </article>
   );
 }

@@ -21,6 +21,7 @@ set -euo pipefail
 IMAGE_NAME=${IMAGE_NAME:-billymrx-portfolio}
 CONTAINER_NAME=${CONTAINER_NAME:-billymrx-portfolio}
 HOST_PORT=${HOST_PORT:-3000}
+HOST_BIND=${HOST_BIND:-127.0.0.1}
 APP_PORT=${APP_PORT:-3000}
 BUILD_CONTEXT=${BUILD_CONTEXT:-.}
 ENV_FILE=${ENV_FILE:-.env}
@@ -80,11 +81,11 @@ if [ "${SKIP_RUN}" != "1" ]; then
     docker rm "${CONTAINER_NAME}" >/dev/null || true
   fi
 
-  echo "[deploy] Starting container '${CONTAINER_NAME}' (port ${HOST_PORT}->${APP_PORT})..."
+  echo "[deploy] Starting container '${CONTAINER_NAME}' (port ${HOST_BIND}:${HOST_PORT}->${APP_PORT})..."
   docker run -d \
     --name "${CONTAINER_NAME}" \
     --restart unless-stopped \
-    -p "${HOST_PORT}:${APP_PORT}" \
+    -p "${HOST_BIND}:${HOST_PORT}:${APP_PORT}" \
     "${IMAGE_NAME}"
 
   echo "[deploy] Deployment complete. Container '${CONTAINER_NAME}' is running."

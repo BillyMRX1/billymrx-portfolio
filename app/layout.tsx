@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     "Billy",
     "BillyMRX",
   ],
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   authors: [{ name: "Brilian Ade Putra", url: "https://www.linkedin.com/in/brilianap" }],
   creator: "Brilian Ade Putra",
   publisher: "Brilian Ade Putra",
@@ -83,43 +87,65 @@ export const metadata: Metadata = {
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Brilian Ade Putra",
-  alternateName: "Billy",
-  url: siteUrl,
-  image: `${siteUrl}/avatar.jpg`,
-  jobTitle: "AI Engineer",
-  worksFor: {
-    "@type": "Organization",
-    name: "Honda Motor Co., Ltd.",
-    department: "AdvanceAI Strategy Planning Division",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Tokyo",
-    addressCountry: "Japan",
-  },
-  alumniOf: "Artificial Intelligence and Product Engineering",
-  knowsAbout: [
-    "Artificial Intelligence",
-    "Applied Machine Learning",
-    "Generative AI",
-    "Data Engineering",
-    "Product Engineering",
-    "Full Stack Development",
-    "Next.js",
-    "Python",
-    "Software Architecture",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Brilian Ade Putra",
+      alternateName: "Billy",
+      url: siteUrl,
+      image: `${siteUrl}/avatar.jpg`,
+      jobTitle: "AI Engineer",
+      worksFor: {
+        "@type": "Organization",
+        name: "Honda Motor Co., Ltd.",
+        department: "AdvanceAI Strategy Planning Division",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Tokyo",
+        addressCountry: "Japan",
+      },
+      alumniOf: "Artificial Intelligence and Product Engineering",
+      knowsAbout: [
+        "Artificial Intelligence",
+        "Applied Machine Learning",
+        "Generative AI",
+        "Data Engineering",
+        "Product Engineering",
+        "Full Stack Development",
+        "Next.js",
+        "Python",
+        "Software Architecture",
+      ],
+      sameAs: [
+        "https://www.linkedin.com/in/brilianap",
+        "https://github.com/BillyMRX1",
+        "https://medium.com/@brilianadeputra",
+      ],
+      seeks: {
+        "@type": "Demand",
+        description:
+          "Job opportunities, freelance projects, and professional networking in Japan",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Brilian Ade Putra · AI Engineer",
+      publisher: { "@id": `${siteUrl}/#person` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#profilepage`,
+      url: siteUrl,
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      mainEntity: { "@id": `${siteUrl}/#person` },
+      inLanguage: "en",
+    },
   ],
-  sameAs: [
-    "https://www.linkedin.com/in/brilianap",
-    "https://github.com/BillyMRX1",
-  ],
-  seeks: {
-    "@type": "Demand",
-    description:
-      "Job opportunities, freelance projects, and professional networking in Japan",
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

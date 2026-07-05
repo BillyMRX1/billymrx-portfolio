@@ -1,0 +1,35 @@
+# Brilian Ade Putra (Billy)
+
+> Personal portfolio of Brilian Ade Putra, an AI Engineer at Honda Motor Co., Ltd. in Tokyo, Japan. He designs and deploys production machine learning systems: ML pipelines, generative AI applications, and data platforms at Honda's AdvanceAI Strategy Planning Division.
+
+Site: https://billymrx.com (single page: about, experience, projects, writing, contact)
+
+## Who
+
+- Name: Brilian Ade Putra, goes by Billy
+- Role: AI Engineer, Honda Motor Co., Ltd., AdvanceAI Strategy Planning Division, Tokyo (March 2025 to present)
+- Background: 4+ years across production ML, Android/mobile engineering, and full stack development; shipped products used by millions of users
+- Skills: Python, TypeScript, Kotlin, Dart; PyTorch, TensorFlow, LangChain, RAG; Azure AI, AWS Bedrock, OpenAI; Next.js, React, FastAPI, PostgreSQL
+
+## Experience
+
+- AI Engineer, Honda Motor Co., Ltd., Tokyo (2025 to present): production ML pipelines, generative AI applications, data platforms
+- Mobile Developer, MMS Group Indonesia, Jakarta (2023 to 2025): React Native enterprise apps, CI/CD
+- Android Engineer, Gravel, Jakarta (2022 to 2023): Kotlin, Jetpack Compose
+- Android Developer, Vision+ (MNC Vision Networks), Jakarta (2021 to 2022): Dolby Vision/Atmos streaming
+- Flutter Developer, Garapin, Jakarta (2021 to 2023, part time)
+
+## Selected projects
+
+- Islam Time: solo-built Android app for daily Islamic practice, shipped to Google Play (Kotlin, Jetpack Compose)
+- Gesture Controller: real-time hand gesture recognition with MediaPipe and OpenCV (Python)
+- Amazon Scraper MCP: Model Context Protocol server that scrapes Amazon product data across 20 domains for LLM product comparison (Node.js)
+- More at https://billymrx.com/#projects
+
+## Links
+
+- LinkedIn: https://www.linkedin.com/in/brilianap
+- GitHub: https://github.com/BillyMRX1
+- Writing (Medium): https://medium.com/@brilianadeputra
+- Resume: https://billymrx.com/resume.pdf
+- Contact: brilianadeputra@gmail.com

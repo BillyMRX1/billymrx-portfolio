@@ -28,9 +28,11 @@ const FadeInWhenVisible = memo(function FadeInWhenVisible({
   };
 
   return (
+    // `relative` so descendants using scroll-linked offsets (ScrubText) resolve
+    // their offsetParent against a positioned ancestor even mid-transform.
     <motion.div
       ref={ref}
-      className={className}
+      className={`relative ${className}`}
       initial={{
         opacity: 0,
         ...directionOffset[direction],

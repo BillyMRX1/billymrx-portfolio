@@ -1,5 +1,6 @@
 import Image from "next/image";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
+import ScrubText from "@/components/ui/ScrubText";
 
 const STATS = [
   { value: "4 yrs", label: "AI in production" },
@@ -9,10 +10,10 @@ const STATS = [
 ] as const;
 
 const SPECS = [
-  { label: "Languages", values: "Python · TypeScript · Kotlin · Dart" },
-  { label: "ML", values: "PyTorch · TensorFlow · LangChain · RAG" },
-  { label: "Cloud", values: "Azure AI · AWS Bedrock · OpenAI · Vercel" },
-  { label: "Stack", values: "Next.js · React · FastAPI · PostgreSQL" },
+  { label: "Languages", values: "Python, TypeScript, Kotlin, Dart" },
+  { label: "ML", values: "PyTorch, TensorFlow, LangChain, RAG" },
+  { label: "Cloud", values: "Azure AI, AWS Bedrock, OpenAI, Vercel" },
+  { label: "Stack", values: "Next.js, React, FastAPI, PostgreSQL" },
   { label: "Currently", values: "Honda AdvanceAI Strategy Planning Division" },
 ] as const;
 
@@ -21,11 +22,8 @@ export default function About() {
     <section id="about" className="bg-[var(--bg)] py-20 md:py-section-y lg:py-section-y-lg px-gutter">
       <div className="mx-auto max-w-apple">
         <FadeInWhenVisible>
-          <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
-            ABOUT
-          </span>
-          <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
-            Building at the intersection<br className="hidden md:block" /> of AI and product.
+          <h2 className="text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+            Models into products.
           </h2>
         </FadeInWhenVisible>
 
@@ -45,16 +43,10 @@ export default function About() {
 
             {/* Bio */}
             <div>
-              <p className="max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
-                I&apos;m an AI Engineer with a background that spans mobile apps, full
-                stack development, and production machine learning. I&apos;ve shipped products
-                to millions of users and now focus on building intelligent systems at
-                Honda&apos;s AdvanceAI Strategy division.
-              </p>
-
-              <blockquote className="mt-8 border-l-2 border-[var(--accent)] pl-4 text-[19px] italic text-[var(--text)]">
-                &ldquo;Intelligence is only useful when it ships.&rdquo;
-              </blockquote>
+              <ScrubText
+                className="max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]"
+                text="I'm an AI Engineer with a background that spans mobile apps, full stack development, and production machine learning. I've shipped products to millions of users and now focus on building intelligent systems at Honda's AdvanceAI Strategy division."
+              />
 
               <p className="mt-6 text-[17px] italic text-[var(--text-secondary)]">
                 When I&apos;m not training models, I&apos;m training Pokémon. 🎮

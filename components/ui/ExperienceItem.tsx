@@ -41,7 +41,7 @@ export default function ExperienceItem({
 
       {tech.length > 0 && (
         <p className="mt-5 text-[14px] text-[var(--text-tertiary)]">
-          {tech.join(" · ")}
+          {tech.join(", ")}
         </p>
       )}
     </article>

@@ -10,8 +10,8 @@ const siteUrl = "https://billymrx.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Brilian Ade Putra (Billy) — AI Engineer & Software Developer in Tokyo",
-    template: "%s | Brilian Ade Putra — AI Engineer",
+    default: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
+    template: "%s | Brilian Ade Putra · AI Engineer",
   },
   description:
     "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Brilian Ade Putra — AI Engineer",
-    title: "Brilian Ade Putra (Billy) — AI Engineer & Software Developer in Tokyo",
+    siteName: "Brilian Ade Putra · AI Engineer",
+    title: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
     description:
       "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
     images: [
@@ -58,13 +58,13 @@ export const metadata: Metadata = {
         url: `${siteUrl}/avatar.jpg`,
         width: 1200,
         height: 630,
-        alt: "Brilian Ade Putra — AI Engineer",
+        alt: "Brilian Ade Putra · AI Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brilian Ade Putra (Billy) — AI Engineer & Software Developer in Tokyo",
+    title: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
     description:
       "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
     images: [`${siteUrl}/avatar.jpg`],

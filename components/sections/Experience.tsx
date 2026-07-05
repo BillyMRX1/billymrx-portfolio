@@ -6,7 +6,7 @@ import { useExperienceRail } from "@/components/hooks/useExperienceRail";
 
 const EXPERIENCES = [
   {
-    date: "Mar 2025 — Present",
+    date: "Mar 2025 - Present",
     role: "AI Engineer",
     company: "Honda Motor Co., Ltd.",
     location: "Tokyo, Japan",
@@ -15,7 +15,7 @@ const EXPERIENCES = [
     tech: ["Python", "LangChain", "RAG", "Azure AI", "OpenAI", "FastAPI", "Docker"],
   },
   {
-    date: "Sep 2023 — Jan 2025",
+    date: "Sep 2023 - Jan 2025",
     role: "Mobile Developer",
     company: "MMS Group Indonesia",
     location: "Jakarta, Indonesia",
@@ -24,7 +24,7 @@ const EXPERIENCES = [
     tech: ["React Native", "TypeScript", "Android", "iOS", "GitHub Actions", "CI/CD"],
   },
   {
-    date: "Oct 2022 — Sep 2023",
+    date: "Oct 2022 - Sep 2023",
     role: "Android Engineer",
     company: "Gravel",
     location: "Jakarta, Indonesia",
@@ -33,7 +33,7 @@ const EXPERIENCES = [
     tech: ["Kotlin", "Jetpack Compose", "Android", "Retrofit", "Room"],
   },
   {
-    date: "Sep 2021 — Oct 2022",
+    date: "Sep 2021 - Oct 2022",
     role: "Android Developer",
     company: "Vision+ (MNC Vision Networks)",
     location: "Jakarta, Indonesia",
@@ -42,7 +42,7 @@ const EXPERIENCES = [
     tech: ["Kotlin", "Java", "Android", "ExoPlayer", "Dolby Vision"],
   },
   {
-    date: "Aug 2021 — Feb 2023",
+    date: "Aug 2021 - Feb 2023",
     role: "Flutter Developer · Part-Time",
     company: "Garapin",
     location: "Jakarta, Indonesia",
@@ -64,20 +64,10 @@ export default function Experience() {
       className="relative bg-[var(--bg)] px-gutter py-20 md:py-section-y lg:py-section-y-lg"
     >
       <div className="mx-auto max-w-apple-wide">
-        {/* Eyebrow */}
-        <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
-          EXPERIENCE
-        </span>
-
         {/* Display headline */}
-        <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+        <h2 className="text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
           Where I&rsquo;ve worked.
         </h2>
-
-        {/* Lede */}
-        <p className="mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
-          A timeline of my professional journey from mobile engineering to AI.
-        </p>
 
         {/* Timeline */}
         <div className="relative mt-20">

@@ -20,14 +20,11 @@ export default async function Blog() {
     <section id="blog" className="bg-[var(--bg)] py-20 md:py-section-y lg:py-section-y-lg px-gutter">
       <div className="mx-auto max-w-apple-wide">
         <FadeInWhenVisible>
-          <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
-            WRITING
-          </span>
-          <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+          <h2 className="text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
             From the blog.
           </h2>
           <p className="mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
-            Thoughts on AI engineering, building products, and lessons from the field.
+            Writing about AI engineering and product building, published on Medium.
           </p>
         </FadeInWhenVisible>
 
@@ -88,7 +85,7 @@ export default async function Blog() {
               rel="noopener noreferrer"
               className="text-[15px] font-medium text-[var(--accent)] hover:underline"
             >
-              Read more on Medium →
+              All posts →
             </a>
           </div>
         </FadeInWhenVisible>

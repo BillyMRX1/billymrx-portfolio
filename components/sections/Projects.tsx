@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
+import ProjectField from "@/components/ui/ProjectField";
 import { getAllProjects, type Project } from "@/lib/loadProjects";
 
 // Titles of the 3 featured projects. Order matters.
@@ -30,10 +31,7 @@ export default async function Projects() {
       {/* Section header */}
       <div className="mx-auto max-w-apple-wide">
         <FadeInWhenVisible>
-          <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
-            PROJECTS
-          </span>
-          <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+          <h2 className="text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
             Things I&apos;ve built.
           </h2>
           <p className="mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
@@ -42,28 +40,33 @@ export default async function Projects() {
         </FadeInWhenVisible>
       </div>
 
-      {/* Featured top 3 — typographic single-column treatment */}
-      <div className="mt-section-y-md">
+      {/* Featured top 3: asymmetric editorial rows, alternating column offset */}
+      <div className="mx-auto mt-20 max-w-apple-wide">
         {featured.map((project, i) => (
           <FadeInWhenVisible key={project.title}>
-            <article
-              className={`flex min-h-[60vh] md:min-h-[80vh] items-center justify-center px-gutter ${
-                i > 0 ? "border-t border-[var(--separator)]" : ""
-              }`}
-            >
-              <div className="mx-auto w-full max-w-apple text-center">
-                <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
-                  {project.category}
-                </span>
-                <h3 className="mt-8 text-balance text-[clamp(36px,7vw,96px)] font-semibold leading-[1.04] tracking-[-0.03em] text-[var(--text)]">
+            <article className="border-t border-[var(--separator)] py-20 md:grid md:grid-cols-12 md:items-center md:gap-8 md:py-28">
+              {/* Latent fingerprint: deterministic constellation seeded by the title */}
+              <div
+                className={`mb-10 aspect-[5/2] md:mb-0 md:row-start-1 md:aspect-square ${
+                  i % 2 === 0 ? "md:col-span-4 md:col-start-9" : "md:col-span-4 md:col-start-1"
+                }`}
+              >
+                <ProjectField seed={project.title} />
+              </div>
+              <div
+                className={`md:row-start-1 ${
+                  i % 2 === 0 ? "md:col-span-7 md:col-start-1" : "md:col-span-7 md:col-start-6"
+                }`}
+              >
+                <h3 className="text-balance text-[clamp(34px,5.5vw,72px)] font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--text)]">
                   {project.title}
                 </h3>
-                <p className="mx-auto mt-8 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
+                <p className="mt-6 max-w-prose text-[19px] leading-[1.5] text-[var(--text-secondary)] md:text-[21px]">
                   {project.description}
                 </p>
                 {project.tech && (
-                  <p className="mt-8 text-[14px] text-[var(--text-tertiary)]">
-                    {project.tech.split(",").map((t) => t.trim()).join(" · ")}
+                  <p className="mt-6 text-[14px] text-[var(--text-tertiary)]">
+                    {project.tech}
                   </p>
                 )}
                 {project.link && (
@@ -71,7 +74,7 @@ export default async function Projects() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/link mt-12 inline-flex items-center gap-2 text-[17px] font-medium text-[var(--accent)] hover:underline"
+                    className="group/link mt-8 inline-flex items-center gap-2 text-[17px] font-medium text-[var(--accent)] hover:underline"
                   >
                     View project{" "}
                     <span className="transition-transform duration-[var(--dur-base)] ease-apple group-hover/link:translate-x-1">

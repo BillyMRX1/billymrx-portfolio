@@ -8,10 +8,10 @@ import Contact from "@/components/sections/Contact";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Brilian Ade Putra (Billy) — AI Engineer & Software Developer in Tokyo",
+    absolute: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
   },
   description:
-    "Brilian Ade Putra (Billy) — AI Engineer at Honda Japan building intelligent products with machine learning, data platforms, and modern web experiences in Tokyo.",
+    "Brilian Ade Putra (Billy) · AI Engineer at Honda Japan building intelligent products with machine learning, data platforms, and modern web experiences in Tokyo.",
   keywords: [
     "AI Engineer Tokyo",
     "Machine Learning Engineer",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Billy Portfolio",
   ],
   openGraph: {
-    title: "Brilian Ade Putra (Billy) — AI Engineer & Software Developer in Tokyo",
+    title: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
     description:
       "AI Engineer at Honda Japan with expertise in machine learning, data products, and production ready software in Tokyo.",
   },

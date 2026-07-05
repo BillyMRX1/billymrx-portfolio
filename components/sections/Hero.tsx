@@ -33,7 +33,7 @@ export default function Hero(): React.JSX.Element {
     <section
       id="hero"
       ref={scopeRef}
-      className="relative min-h-screen flex items-center justify-center px-gutter py-24"
+      className="relative min-h-[100dvh] flex items-center justify-center px-gutter py-24"
     >
       <motion.div
         variants={container}
@@ -59,9 +59,8 @@ export default function Hero(): React.JSX.Element {
             variants={fadeUp}
             className="mt-6 max-w-2xl text-[clamp(16px,1.6vw,21px)] leading-[1.5] text-[var(--text-secondary)]"
           >
-            I&apos;m Brilian Ade Putra, an AI Engineer at Honda Japan. I design and deploy
-            machine learning systems for real world products, from model training to the
-            interfaces people actually use.
+            I&apos;m Brilian Ade Putra. At Honda in Tokyo, I take machine learning
+            from training run to shipped product.
           </motion.p>
 
           <motion.div
@@ -95,16 +94,6 @@ export default function Hero(): React.JSX.Element {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        aria-hidden="true"
-        initial={reduced ? { opacity: 1 } : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8, ease: APPLE_EASE }}
-        className="pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[12px] tracking-[0.08em] uppercase text-[var(--text-tertiary)]"
-      >
-        <span>scroll</span>
-        <span className="animate-pulse">↓</span>
-      </motion.div>
     </section>
   );
 }

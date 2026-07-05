@@ -1,19 +1,20 @@
+import { FiMail, FiLinkedin, FiGithub } from "react-icons/fi";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import ContactForm from "@/components/ContactForm";
 
 const contactLinks = [
   {
-    icon: "✉",
+    icon: FiMail,
     label: "Email",
     href: "mailto:brilianadeputra@gmail.com",
   },
   {
-    icon: "in",
+    icon: FiLinkedin,
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/brilianap",
   },
   {
-    icon: "gh",
+    icon: FiGithub,
     label: "GitHub",
     href: "https://github.com/BillyMRX1",
   },
@@ -27,15 +28,12 @@ export default function Contact() {
     >
       <div className="mx-auto max-w-apple text-center">
         <FadeInWhenVisible>
-          <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
-            CONTACT
-          </span>
-          <h2 className="mt-6 text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+          <h2 className="text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
             Let&apos;s build something.
           </h2>
           <p className="mx-auto mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
-            I&apos;m open to new opportunities, collaborations, and interesting
-            conversations.
+            Hiring, collaborating, or curious about something I built? My inbox
+            is open.
           </p>
         </FadeInWhenVisible>
 
@@ -50,9 +48,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 rounded-full border border-[var(--glass-border)] bg-[var(--glass-bg)] px-5 py-2.5 text-[15px] font-medium text-[var(--text)] backdrop-blur-[20px] backdrop-saturate-150 transition-all duration-[var(--dur-base)] ease-apple hover:border-[var(--accent)] hover:text-[var(--accent)]"
               >
-                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--separator)] text-[11px] font-semibold">
-                  {link.icon}
-                </span>
+                <link.icon aria-hidden="true" size={16} strokeWidth={1.75} />
                 {link.label}
               </a>
             ))}

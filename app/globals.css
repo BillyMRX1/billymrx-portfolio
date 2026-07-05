@@ -84,6 +84,9 @@ html {
   scroll-behavior: smooth;
   /* Prevent horizontal scrolling caused by transforms (e.g. GSAP hero scale + rotate). */
   overflow-x: hidden;
+  /* Non-static so scroll-linked animations (framer-motion useScroll targets)
+     can measure offsets against the root scroll container. */
+  position: relative;
 }
 
 body {
@@ -173,11 +176,13 @@ body {
 
 /* ─── Reduced Motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
-    transform: none !important;
   }
 }

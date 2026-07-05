@@ -7,17 +7,12 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'AI Engineer at Honda Japan building intelligent products with machine learning, data platforms, and full stack software craftsmanship.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#2563eb',
+    background_color: '#fbfbfd',
+    theme_color: '#0071e3',
     orientation: 'portrait',
     categories: ['portfolio', 'professional', 'technology'],
     lang: 'en',
     icons: [
-      {
-        src: '/favicon.ico',
-        sizes: 'any',
-        type: 'image/x-icon',
-      },
       {
         src: '/icon-192x192.png',
         sizes: '192x192',
@@ -29,8 +24,8 @@ export default function manifest(): MetadataRoute.Manifest {
         type: 'image/png',
       },
       {
-        src: '/apple-touch-icon.png',
-        sizes: '180x180',
+        src: '/icon-512x512.png',
+        sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable',
       },

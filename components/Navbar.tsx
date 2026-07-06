@@ -81,7 +81,7 @@ export default function Navbar() {
         {/* Mobile dropdown */}
         {menuOpen && (
           <div
-            className="flex md:hidden flex-col gap-2 border-t border-[var(--separator)] bg-[var(--bg)] px-8 py-3"
+            className="flex md:hidden flex-col gap-2 border-t border-[var(--separator)] bg-[var(--glass-bg)] px-8 py-3"
           >
             {navLinks.map((link) => (
               <a

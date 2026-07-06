@@ -94,7 +94,13 @@ const structuredData = {
       name: "Brilian Ade Putra",
       alternateName: "Billy",
       url: siteUrl,
-      image: `${siteUrl}/avatar.jpg`,
+      image: {
+        "@type": "ImageObject",
+        "@id": `${siteUrl}/#avatar`,
+        url: `${siteUrl}/avatar.jpg`,
+        contentUrl: `${siteUrl}/avatar.jpg`,
+        caption: "Brilian Ade Putra, AI Engineer in Tokyo",
+      },
       jobTitle: "AI Engineer",
       worksFor: {
         "@type": "Organization",
@@ -143,6 +149,7 @@ const structuredData = {
       url: siteUrl,
       isPartOf: { "@id": `${siteUrl}/#website` },
       mainEntity: { "@id": `${siteUrl}/#person` },
+      primaryImageOfPage: { "@id": `${siteUrl}/#avatar` },
       inLanguage: "en",
     },
   ],

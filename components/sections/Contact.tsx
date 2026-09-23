@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 const contactLinks = [
   {
     icon: FiMail,
-    label: "Email",
+    label: "Email Billy",
     href: "mailto:brilianadeputra@gmail.com",
   },
   {
@@ -29,11 +29,12 @@ export default function Contact() {
       <div className="mx-auto max-w-apple text-center">
         <FadeInWhenVisible>
           <h2 className="text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
-            Let&apos;s build something.
+            Tell me what you want to improve.
           </h2>
           <p className="mx-auto mt-6 max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]">
-            Hiring, collaborating, or curious about something I built? My inbox
-            is open.
+            Describe the task, who uses it, and the tools or documents
+            involved. I&apos;ll review the fit and follow up about scope and
+            next steps.
           </p>
         </FadeInWhenVisible>
 
@@ -71,6 +72,18 @@ export default function Contact() {
           <div className="mx-auto mt-16 max-w-md text-left">
             <ContactForm />
           </div>
+        </FadeInWhenVisible>
+
+        <FadeInWhenVisible>
+          <p className="mt-10 text-[14px] text-[var(--text-tertiary)]">
+            Looking for my resume?{" "}
+            <a
+              href="/resume.pdf"
+              className="font-medium text-[var(--text-secondary)] underline underline-offset-2 hover:text-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+            >
+              View resume
+            </a>
+          </p>
         </FadeInWhenVisible>
       </div>
     </section>

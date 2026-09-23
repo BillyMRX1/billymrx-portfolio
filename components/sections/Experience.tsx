@@ -65,9 +65,19 @@ export default function Experience() {
     >
       <div className="mx-auto max-w-apple-wide">
         {/* Display headline */}
-        <h2 className="text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
-          Where I&rsquo;ve worked.
-        </h2>
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
+          <h2 className="text-balance text-[clamp(32px,6vw,72px)] font-semibold leading-[1.08] tracking-[-0.028em] text-[var(--text)]">
+            Where I&rsquo;ve worked.
+          </h2>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[14px] font-medium text-[var(--text-tertiary)] no-underline transition-colors duration-200 hover:text-[var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+          >
+            View resume
+          </a>
+        </div>
 
         {/* Timeline */}
         <div className="relative mt-20">

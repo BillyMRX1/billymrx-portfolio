@@ -165,6 +165,11 @@ body {
   color: #fff;
 }
 
+/* ─── Anchor scroll offset ───────────────────────────────────────────────────── */
+section[id] {
+  scroll-margin-top: 72px;
+}
+
 /* ─── Liquid Glass ───────────────────────────────────────────────────────────── */
 .glass {
   background: var(--glass-bg);

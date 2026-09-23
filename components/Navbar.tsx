@@ -1,19 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { scrollToSection } from "@/lib/scrollToSection";
 
 const navLinks = [
+  { label: "Services", href: "#services" },
+  { label: "Work", href: "#projects" },
   { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
   { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
 ];
+
+const ctaLink = { label: "Discuss a project", href: "#contact" };
+
+const resumeLink = { label: "Resume", href: "/resume.pdf" };
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuId = "primary-mobile-menu";
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -21,6 +26,18 @@ export default function Navbar() {
     const id = href.replace("#", "");
     scrollToSection(id);
   };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
 
   return (
     <>
@@ -42,10 +59,26 @@ export default function Navbar() {
           </a>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <NavLink key={link.href} link={link} onClick={handleNavClick} />
             ))}
+            <a
+              href={resumeLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Resume (PDF, opens in a new tab)"
+              className="rounded-full border border-[var(--separator)] px-4 py-2 text-[0.8rem] font-medium text-[var(--text-secondary)] no-underline transition-colors duration-200 hover:text-[var(--accent)] hover:border-[var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+            >
+              {resumeLink.label}
+            </a>
+            <a
+              href={ctaLink.href}
+              onClick={(e) => handleNavClick(e, ctaLink.href)}
+              className="rounded-full bg-[var(--accent)] px-4 py-2 text-[0.8rem] font-medium text-white no-underline transition-colors duration-200 hover:bg-[var(--accent-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+            >
+              {ctaLink.label}
+            </a>
             <ThemeToggle />
           </div>
 
@@ -53,9 +86,11 @@ export default function Navbar() {
           <div className="flex md:hidden items-center gap-3">
             <ThemeToggle />
             <button
+              ref={menuButtonRef}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
+              aria-controls={menuId}
               className="flex cursor-pointer flex-col gap-[5px] border-none bg-transparent p-1"
             >
               <span
@@ -81,6 +116,7 @@ export default function Navbar() {
         {/* Mobile dropdown */}
         {menuOpen && (
           <div
+            id={menuId}
             className="flex md:hidden flex-col gap-2 border-t border-[var(--separator)] bg-[var(--glass-bg)] px-8 py-3"
           >
             {navLinks.map((link) => (
@@ -93,6 +129,23 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href={resumeLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Resume (PDF, opens in a new tab)"
+              onClick={() => setMenuOpen(false)}
+              className="py-3 text-base font-medium text-[var(--text-secondary)] no-underline"
+            >
+              {resumeLink.label}
+            </a>
+            <a
+              href={ctaLink.href}
+              onClick={(e) => handleNavClick(e, ctaLink.href)}
+              className="mt-1 mb-2 inline-flex w-fit items-center justify-center rounded-full bg-[var(--accent)] px-4 py-2 text-[0.9rem] font-medium text-white no-underline"
+            >
+              {ctaLink.label}
+            </a>
           </div>
         )}
       </nav>

@@ -3,7 +3,7 @@ import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import ScrubText from "@/components/ui/ScrubText";
 
 const STATS = [
-  { value: "4 yrs", label: "AI in production" },
+  { value: "Mobile, web & AI", label: "engineering experience" },
   { value: "5+", label: "products shipped" },
   { value: "2M+", label: "users reached" },
   { value: "Tokyo", label: "based in" },
@@ -14,7 +14,7 @@ const SPECS = [
   { label: "ML", values: "PyTorch, TensorFlow, LangChain, RAG" },
   { label: "Cloud", values: "Azure AI, AWS Bedrock, OpenAI, Vercel" },
   { label: "Stack", values: "Next.js, React, FastAPI, PostgreSQL" },
-  { label: "Currently", values: "Honda AdvanceAI Strategy Planning Division" },
+  { label: "Working language", values: "English" },
 ] as const;
 
 export default function About() {
@@ -45,7 +45,7 @@ export default function About() {
             <div>
               <ScrubText
                 className="max-w-prose text-[21px] leading-[1.5] text-[var(--text-secondary)]"
-                text="I'm an AI Engineer with a background that spans mobile apps, full stack development, and production machine learning. I've shipped products to millions of users and now focus on building intelligent systems at Honda's AdvanceAI Strategy division."
+                text="I'm Brilian Ade Putra, also known as Billy. My background spans mobile development, full-stack applications, and applied AI. I bring those skills together to build software people can actually use."
               />
 
               <p className="mt-6 text-[17px] italic text-[var(--text-secondary)]">
@@ -60,7 +60,13 @@ export default function About() {
           <dl className="mt-24 grid grid-cols-2 gap-x-8 gap-y-12 border-t border-[var(--separator)] pt-16 md:grid-cols-4">
             {STATS.map((s) => (
               <div key={s.label}>
-                <dt className="text-[clamp(32px,5vw,56px)] font-semibold leading-none tracking-[-0.02em] tabular-nums text-[var(--accent)]">
+                <dt
+                  className={`font-semibold leading-[1.05] tracking-[-0.02em] text-[var(--accent)] ${
+                    s.value.length > 10
+                      ? "text-[clamp(19px,3.4vw,32px)]"
+                      : "text-[clamp(32px,5vw,56px)] tabular-nums"
+                  }`}
+                >
                   {s.value}
                 </dt>
                 <dd className="mt-2 text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">

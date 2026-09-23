@@ -4,6 +4,7 @@ const socialLinks = [
   { href: "https://github.com/BillyMRX1", label: "GitHub" },
   { href: "https://www.linkedin.com/in/brilianap", label: "LinkedIn" },
   { href: "https://medium.com/@brilianadeputra", label: "Medium" },
+  { href: "/resume.pdf", label: "Resume" },
 ];
 
 export default function Footer() {

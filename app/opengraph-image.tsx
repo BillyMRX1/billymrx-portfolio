@@ -54,12 +54,12 @@ export default function OpenGraphImage() {
               display: "flex",
             }}
           >
-            AI Engineer at Honda · Tokyo, Japan
+            AI & Software Engineer · Tokyo, Japan
           </div>
         </div>
 
         <div style={{ fontSize: 34, color: "#0a84ff", fontWeight: 600 }}>
-          Intelligence, shipped.
+          AI features for your website, app, and internal tools.
         </div>
       </div>
     ),

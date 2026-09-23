@@ -1,6 +1,6 @@
 # BillyMRX Portfolio
 
-This repository powers [billymrx.com](https://billymrx.com), the personal portfolio of **Brilian Ade Putra (Billy)** AI Engineer at Honda Japan. The site is a single-page experience covering my work, background, and contact information.
+This repository powers [billymrx.com](https://billymrx.com), the personal portfolio of **Brilian Ade Putra (Billy)**, an AI and software engineer. The site is a single-page experience covering my work, background, and contact information.
 
 ## Live Site
 
@@ -12,10 +12,11 @@ All content lives on the root `/` route as scrollable sections:
 
 | Section    | Anchor       | Description                                      |
 |------------|--------------|--------------------------------------------------|
-| Hero       | (top)        | Introduction, avatar, CTA, and resume download   |
+| Hero       | (top)        | Introduction, avatar, and CTA to discuss a project |
+| Services   | `#services`  | Featured document assistant pilot, scope, and FAQ |
+| Projects   | `#projects`  | Featured projects loaded from MDX content files  |
 | About      | `#about`     | Background, skills, and personal note            |
 | Experience | `#experience`| Professional timeline at Honda and prior roles   |
-| Projects   | `#projects`  | Featured projects loaded from MDX content files  |
 | Blog       | `#blog`      | Latest posts pulled from Medium via RSS          |
 | Contact    | `#contact`   | EmailJS contact form                             |
 

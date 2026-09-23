@@ -1,8 +1,16 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import { requestInquiry } from "@/lib/inquiryInterest";
 import { scrollToSection } from "@/lib/scrollToSection";
+
+// Timings for the FAQ accordion's Web Animations API driven open/close.
+const OPEN_MS = 300;
+const CLOSE_MS = 220;
+const EASE = "cubic-bezier(0.16, 1, 0.3, 1)"; // tailwind ease-apple
+const CLOSE_EASE = "cubic-bezier(0.32, 0.72, 0, 1)"; // tailwind glide
+const FADE_MS = 150; // reduced-motion fallback
 
 const DESIGNED_TO_DO = [
   "Find relevant information without searching through multiple documents.",
@@ -37,6 +45,178 @@ const FAQ = [
     a: "Support scope and ongoing costs are agreed separately.",
   },
 ];
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<Animation | null>(null);
+  const closingRef = useRef(false);
+  const [closing, setClosing] = useState(false);
+
+  function setClosingState(value: boolean) {
+    closingRef.current = value;
+    setClosing(value);
+  }
+
+  function cancelAnimation() {
+    if (animationRef.current) {
+      animationRef.current.cancel();
+      animationRef.current = null;
+    }
+  }
+
+  function prefersReducedMotion() {
+    return window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+  }
+
+  useEffect(() => {
+    return () => {
+      animationRef.current?.cancel();
+    };
+  }, []);
+
+  function handleToggle() {
+    const details = detailsRef.current;
+    if (!details) return;
+
+    if (!details.open) {
+      // Covers closes from anywhere (click, script, find-in-page).
+      cancelAnimation();
+      setClosingState(false);
+      return;
+    }
+
+    if (closingRef.current) {
+      // Something external opened/kept it open while our close was running.
+      cancelAnimation();
+      setClosingState(false);
+    }
+
+    // Otherwise do nothing: must not cancel our own opening animation, whose
+    // toggle event arrives after the animation has already started.
+  }
+
+  function handleSummaryClick(e: React.MouseEvent<HTMLElement>) {
+    const details = detailsRef.current;
+    const panel = panelRef.current;
+    if (!details || !panel) return;
+
+    if (typeof panel.animate !== "function") return;
+
+    if (prefersReducedMotion()) {
+      if (!details.open) {
+        // About to open: let the native default action run, just fade the answer in.
+        panel.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: FADE_MS,
+          fill: "none",
+        });
+      } else {
+        // About to close: let native close happen instantly.
+        cancelAnimation();
+        setClosingState(false);
+      }
+      return;
+    }
+
+    // Capture the current rendered height before cancelling any running
+    // animation, so a click mid-animation continues from where it visually is.
+    // A closed panel can still report its last laid-out height, so start at 0.
+    const startHeight = details.open ? panel.getBoundingClientRect().height : 0;
+    const startOpacity = window.getComputedStyle(panel).opacity;
+    cancelAnimation();
+
+    if (!details.open) {
+      e.preventDefault();
+      details.open = true;
+      const end = panel.scrollHeight;
+      const anim = panel.animate(
+        [
+          { height: `${startHeight}px`, opacity: 0 },
+          { height: `${end}px`, opacity: 1 },
+        ],
+        { duration: OPEN_MS, easing: EASE, fill: "none" },
+      );
+      animationRef.current = anim;
+      const clear = () => {
+        if (animationRef.current === anim) animationRef.current = null;
+      };
+      anim.finished.then(clear).catch(clear);
+      return;
+    }
+
+    if (closingRef.current) {
+      // Re-clicked during a close: reverse back to open.
+      e.preventDefault();
+      setClosingState(false);
+      const end = panel.scrollHeight;
+      const anim = panel.animate(
+        [
+          { height: `${startHeight}px`, opacity: startOpacity },
+          { height: `${end}px`, opacity: 1 },
+        ],
+        { duration: OPEN_MS, easing: EASE, fill: "none" },
+      );
+      animationRef.current = anim;
+      const clear = () => {
+        if (animationRef.current === anim) animationRef.current = null;
+      };
+      anim.finished.then(clear).catch(clear);
+      return;
+    }
+
+    // Start closing.
+    e.preventDefault();
+    setClosingState(true);
+    const anim = panel.animate(
+      [
+        { height: `${startHeight}px`, opacity: 1 },
+        { height: "0px", opacity: 0 },
+      ],
+      { duration: CLOSE_MS, easing: CLOSE_EASE, fill: "forwards" },
+    );
+    animationRef.current = anim;
+    anim.finished
+      .then(() => {
+        if (animationRef.current === anim) {
+          // Close first, then cancel, so there is no flash of full-height content.
+          details.open = false;
+          anim.cancel();
+          animationRef.current = null;
+          setClosingState(false);
+        }
+      })
+      .catch(() => {
+        // Cancelled (AbortError): a newer click already took over.
+      });
+  }
+
+  return (
+    <details
+      ref={detailsRef}
+      onToggle={handleToggle}
+      data-closing={closing ? "" : undefined}
+      className="group"
+    >
+      <summary
+        onClick={handleSummaryClick}
+        className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-4 text-[17px] font-medium text-[var(--text)] [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+      >
+        <span>{q}</span>
+        <span
+          aria-hidden="true"
+          data-faq-icon
+          className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--separator)] text-[var(--text-secondary)] transition-colors duration-200 group-hover:border-[var(--text-tertiary)] group-hover:text-[var(--text)]"
+        >
+          <span className="absolute h-[1.5px] w-3 rounded-full bg-current" />
+          <span className="absolute h-3 w-[1.5px] rounded-full bg-current transition-transform duration-300 ease-apple group-open:rotate-90 group-open:scale-y-0 group-data-[closing]:rotate-0 group-data-[closing]:scale-y-100" />
+        </span>
+      </summary>
+      <div ref={panelRef} data-faq-panel className="overflow-hidden">
+        <p className="pb-4 text-[16px] leading-[1.5] text-[var(--text-secondary)]">{a}</p>
+      </div>
+    </details>
+  );
+}
 
 export default function Services() {
   return (
@@ -144,20 +324,7 @@ export default function Services() {
             </h3>
             <div className="mt-4 divide-y divide-[var(--separator)]">
               {FAQ.map((item) => (
-                <details key={item.q} className="group py-4">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-medium text-[var(--text)] [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]">
-                    {item.q}
-                    <span
-                      aria-hidden="true"
-                      className="text-[var(--text-tertiary)] transition-transform group-open:rotate-45"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p className="mt-3 text-[16px] leading-[1.5] text-[var(--text-secondary)]">
-                    {item.a}
-                  </p>
-                </details>
+                <FaqItem key={item.q} q={item.q} a={item.a} />
               ))}
             </div>
           </div>

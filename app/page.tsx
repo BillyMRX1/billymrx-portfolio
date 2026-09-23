@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
+import Services from "@/components/sections/Services";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
@@ -8,14 +9,17 @@ import Contact from "@/components/sections/Contact";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
+    absolute: "Brilian Ade Putra (Billy) | AI & Software Engineer",
   },
   description:
-    "Brilian Ade Putra (Billy) · AI Engineer at Honda Japan building intelligent products with machine learning, data platforms, and modern web experiences in Tokyo.",
+    "AI assistants and software integrations for websites, apps, and internal tools. Work directly with Billy on a focused implementation project.",
   keywords: [
     "AI Engineer Tokyo",
     "Machine Learning Engineer",
-    "Honda AI",
+    "document AI assistant",
+    "RAG developer",
+    "AI integration",
+    "LLM integration",
     "Generative AI",
     "Software Engineer Japan",
     "Data Products",
@@ -23,9 +27,9 @@ export const metadata: Metadata = {
     "Billy Portfolio",
   ],
   openGraph: {
-    title: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
+    title: "Brilian Ade Putra (Billy) | AI & Software Engineer",
     description:
-      "AI Engineer at Honda Japan with expertise in machine learning, data products, and production ready software in Tokyo.",
+      "AI assistants and software integrations for websites, apps, and internal tools. Work directly with Billy on a focused implementation project.",
   },
 };
 
@@ -33,9 +37,10 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Services />
+      <Projects />
       <About />
       <Experience />
-      <Projects />
       <Blog />
       <Contact />
     </>

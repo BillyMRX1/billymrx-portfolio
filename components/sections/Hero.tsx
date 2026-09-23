@@ -46,43 +46,57 @@ export default function Hero(): React.JSX.Element {
             variants={fadeUp}
             className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]"
           >
-            AI Engineer · Tokyo, Japan
+            AI & Software Engineer · Tokyo, Japan
           </motion.span>
 
           <h1
             className="mt-6 font-sans font-semibold text-[var(--text)] text-[clamp(40px,9vw,96px)] leading-[1.05] tracking-[-0.035em] [text-wrap:balance]"
           >
-            Intelligence, shipped.
+            AI features for your website, app, and internal tools.
           </h1>
 
           <motion.p
             variants={fadeUp}
             className="mt-6 max-w-2xl text-[clamp(16px,1.6vw,21px)] leading-[1.5] text-[var(--text-secondary)]"
           >
-            I&apos;m Brilian Ade Putra. At Honda in Tokyo, I take machine learning
-            from training run to shipped product.
+            I&apos;m Brilian Ade Putra, or Billy. I help businesses and software
+            teams turn practical AI ideas into working software, starting with
+            a focused document-assistant pilot built around your team&apos;s
+            questions.
           </motion.p>
 
           <motion.div
             variants={fadeUp}
             className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <button
-              type="button"
-              onClick={() => scrollToSection("contact")}
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact");
+              }}
               className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-[17px] font-medium text-white transition-colors duration-[400ms] ease-apple hover:bg-[var(--accent-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
             >
-              Get in touch
-            </button>
+              Discuss a project
+            </a>
             <a
-              href="/resume.pdf"
-              download
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("services");
+              }}
               className="inline-flex items-center justify-center rounded-full px-6 py-3 text-[17px] font-medium text-[var(--accent)] transition-opacity duration-[400ms] ease-apple hover:underline hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
             >
-              <span aria-hidden="true">↓</span>
-              <span className="ml-1">Resume</span>
+              Explore the pilot
             </a>
           </motion.div>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-4 text-[14px] text-[var(--text-tertiary)]"
+          >
+            Remote collaboration in English.
+          </motion.p>
         </div>
 
         <motion.div

@@ -1,4 +1,4 @@
-import { getAllProjects } from '@/lib/loadProjects';
+import { getAllProjects, getOwnershipLabel } from '@/lib/loadProjects';
 
 describe('Projects Page Integration', () => {
   it('loads all projects successfully', async () => {
@@ -60,6 +60,17 @@ describe('Projects Page Integration', () => {
         if (project.tech) {
           expect(typeof project.tech).toBe('string');
         }
+      });
+    });
+  });
+
+  it('gives every project an ownership label and never uses freelance', async () => {
+    const projects = await getAllProjects();
+
+    Object.values(projects).forEach(categoryProjects => {
+      categoryProjects.forEach(project => {
+        expect(project.type).not.toBe('freelance');
+        expect(getOwnershipLabel(project.type)).toBeDefined();
       });
     });
   });

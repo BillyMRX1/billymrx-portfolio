@@ -1,14 +1,14 @@
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
 import ProjectField from "@/components/ui/ProjectField";
-import { getAllProjects, type Project } from "@/lib/loadProjects";
+import { getAllProjects, getOwnershipLabel, type Project } from "@/lib/loadProjects";
 
 // Titles of the 3 featured projects. Order matters.
 // Titles must match each MDX `title:` exactly (case + spelling).
 const FEATURED_TITLES = [
-  "Islam Time",
-  "Gesture Controller",
+  "PDF RAG System",
   "Amazon Scraper MCP",
+  "Islam Time",
 ];
 
 export default async function Projects() {
@@ -58,7 +58,12 @@ export default async function Projects() {
                   i % 2 === 0 ? "md:col-span-7 md:col-start-1" : "md:col-span-7 md:col-start-6"
                 }`}
               >
-                <h3 className="text-balance text-[clamp(34px,5.5vw,72px)] font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--text)]">
+                {getOwnershipLabel(project.type) && (
+                  <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+                    {getOwnershipLabel(project.type)}
+                  </p>
+                )}
+                <h3 className="mt-2 text-balance text-[clamp(34px,5.5vw,72px)] font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--text)]">
                   {project.title}
                 </h3>
                 <p className="mt-6 max-w-prose text-[19px] leading-[1.5] text-[var(--text-secondary)] md:text-[21px]">
@@ -81,6 +86,40 @@ export default async function Projects() {
                       →
                     </span>
                   </Link>
+                )}
+                {(project.problem || project.approach || project.evidence) && (
+                  <dl className="mt-8 max-w-prose space-y-4 border-t border-[var(--separator)] pt-8">
+                    {project.problem && (
+                      <div className="grid grid-cols-1 gap-1 md:grid-cols-[110px_1fr] md:items-baseline md:gap-4">
+                        <dt className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+                          Problem
+                        </dt>
+                        <dd className="text-[15px] leading-[1.5] text-[var(--text-secondary)]">
+                          {project.problem}
+                        </dd>
+                      </div>
+                    )}
+                    {project.approach && (
+                      <div className="grid grid-cols-1 gap-1 md:grid-cols-[110px_1fr] md:items-baseline md:gap-4">
+                        <dt className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+                          How it works
+                        </dt>
+                        <dd className="text-[15px] leading-[1.5] text-[var(--text-secondary)]">
+                          {project.approach}
+                        </dd>
+                      </div>
+                    )}
+                    {project.evidence && (
+                      <div className="grid grid-cols-1 gap-1 md:grid-cols-[110px_1fr] md:items-baseline md:gap-4">
+                        <dt className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+                          Evidence
+                        </dt>
+                        <dd className="text-[15px] leading-[1.5] text-[var(--text-secondary)]">
+                          {project.evidence}
+                        </dd>
+                      </div>
+                    )}
+                  </dl>
                 )}
               </div>
             </article>
@@ -122,6 +161,7 @@ function ProjectListRow({ project }: { project: Project }) {
     <div className="group/row -mx-4 rounded px-4 py-4 transition-colors duration-[var(--dur-base)] ease-apple hover:bg-[var(--surface)] md:grid md:grid-cols-[140px_1fr_auto] md:items-baseline md:gap-4 md:py-6">
       <span className="block text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
         {project.category}
+        {getOwnershipLabel(project.type) && ` · ${getOwnershipLabel(project.type)}`}
       </span>
       <div className="mt-1 flex items-baseline justify-between gap-3 md:mt-0 md:contents">
         <span className="text-[17px] font-medium text-[var(--text)]">

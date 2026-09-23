@@ -30,8 +30,8 @@ function clearEnv() {
 }
 
 async function fillValidForm(user: ReturnType<typeof userEvent.setup>) {
-  await user.type(screen.getByLabelText(/^name$/i), "Jane Doe");
-  await user.type(screen.getByLabelText(/^email$/i), "jane@example.com");
+  await user.type(screen.getByRole("textbox", { name: /^name$/i }), "Jane Doe");
+  await user.type(screen.getByRole("textbox", { name: /^email$/i }), "jane@example.com");
   await user.type(
     screen.getByLabelText(/what would you like to improve/i),
     "Help staff find answers in our internal policy documents."
@@ -47,8 +47,8 @@ describe("ContactForm", () => {
 
   it("renders all fields with labels", () => {
     render(<ContactForm />);
-    expect(screen.getByLabelText(/^name$/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/^email$/i)).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /^name$/i })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /^email$/i })).toBeInTheDocument();
     expect(screen.getByLabelText(/company or website/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/what kind of project is this/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/what would you like to improve/i)).toBeInTheDocument();
@@ -65,7 +65,7 @@ describe("ContactForm", () => {
 
     await user.click(screen.getByRole("button", { name: /send project inquiry/i }));
 
-    const nameInput = await screen.findByLabelText(/^name$/i);
+    const nameInput = await screen.findByRole("textbox", { name: /^name$/i });
     expect(nameInput).toHaveAttribute("aria-invalid", "true");
     expect(nameInput).toHaveAttribute("aria-describedby", "name-error");
     expect(screen.getByText(/please enter your name/i)).toBeInTheDocument();
@@ -123,8 +123,8 @@ describe("ContactForm", () => {
       "href",
       "mailto:brilianadeputra@gmail.com"
     );
-    expect(screen.getByLabelText(/^name$/i)).toHaveValue("Jane Doe");
-    expect(screen.getByLabelText(/^email$/i)).toHaveValue("jane@example.com");
+    expect(screen.getByRole("textbox", { name: /^name$/i })).toHaveValue("Jane Doe");
+    expect(screen.getByRole("textbox", { name: /^email$/i })).toHaveValue("jane@example.com");
   });
 
   it("does not call send and shows an error when env vars are missing", async () => {
@@ -168,5 +168,69 @@ describe("ContactForm", () => {
         "document-assistant"
       )
     );
+  });
+});
+
+describe("required field indicators", () => {
+  const REQUIRED_IDS = ["name", "email", "goal"] as const;
+  const OPTIONAL_IDS = ["company", "projectType", "tools", "budget", "timeline"] as const;
+
+  beforeEach(() => {
+    emailjs.send.mockReset();
+    emailjs.send.mockResolvedValue(undefined);
+    clearEnv();
+  });
+
+  it("marks required fields with `required` and a visible asterisk in the label", () => {
+    const { container } = render(<ContactForm />);
+
+    for (const id of REQUIRED_IDS) {
+      const control = container.querySelector(`#${id}`);
+      expect(control).toBeRequired();
+
+      const label = container.querySelector(`label[for="${id}"]`);
+      const asterisks = label?.querySelectorAll('span[aria-hidden="true"]');
+      expect(asterisks).toHaveLength(1);
+      expect(asterisks?.[0]).toHaveTextContent("*");
+    }
+  });
+
+  it("leaves optional fields without `required` or an asterisk", () => {
+    const { container } = render(<ContactForm />);
+
+    for (const id of OPTIONAL_IDS) {
+      const control = container.querySelector(`#${id}`);
+      expect(control).not.toBeRequired();
+
+      const label = container.querySelector(`label[for="${id}"]`);
+      expect(label?.querySelectorAll('[aria-hidden="true"]')).toHaveLength(0);
+      expect(label?.textContent).not.toContain("*");
+    }
+  });
+
+  it("excludes the asterisk from the accessible name of required controls", () => {
+    render(<ContactForm />);
+
+    expect(screen.getByRole("textbox", { name: /^name$/i })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /^email$/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("textbox", { name: /^what would you like to improve\?$/i })
+    ).toBeInTheDocument();
+  });
+
+  it("flags exactly the required fields as invalid on empty submit, matching the asterisk list", async () => {
+    setValidEnv();
+    const user = userEvent.setup();
+    const { container } = render(<ContactForm />);
+
+    await user.click(screen.getByRole("button", { name: /send project inquiry/i }));
+
+    await waitFor(() => {
+      const invalidIds = [...REQUIRED_IDS, ...OPTIONAL_IDS].filter((id) => {
+        const control = container.querySelector(`#${id}`);
+        return control?.getAttribute("aria-invalid") === "true";
+      });
+      expect(new Set(invalidIds)).toEqual(new Set(REQUIRED_IDS));
+    });
   });
 });

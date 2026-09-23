@@ -85,6 +85,12 @@ const labelClass = "block text-[0.8rem] font-medium mb-[0.4rem] text-[var(--text
 
 const errorClass = "text-[#ef4444] text-[0.8rem] mt-[0.3rem]";
 
+const requiredMark = (
+  <span aria-hidden="true" className="ml-0.5 text-[#ef4444]">
+    *
+  </span>
+);
+
 const defaultValues: FormData = {
   name: "",
   email: "",
@@ -186,12 +192,13 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5" noValidate>
       <div>
         <label htmlFor="name" className={labelClass}>
-          Name
+          Name{requiredMark}
         </label>
         <input
           id="name"
           {...register("name")}
           placeholder="Your name"
+          required
           aria-invalid={errors.name ? "true" : "false"}
           aria-describedby={errors.name ? "name-error" : undefined}
           className={inputClass}
@@ -205,13 +212,14 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="email" className={labelClass}>
-          Email
+          Email{requiredMark}
         </label>
         <input
           id="email"
           type="email"
           {...register("email")}
           placeholder="your@email.com"
+          required
           aria-invalid={errors.email ? "true" : "false"}
           aria-describedby={errors.email ? "email-error" : undefined}
           className={inputClass}
@@ -267,13 +275,14 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="goal" className={labelClass}>
-          What would you like to improve?
+          What would you like to improve?{requiredMark}
         </label>
         <textarea
           id="goal"
           {...register("goal")}
           placeholder="Describe the task, who uses it, and what's slow or manual today"
           rows={5}
+          required
           aria-invalid={errors.goal ? "true" : "false"}
           aria-describedby={errors.goal ? "goal-error" : undefined}
           className={`${inputClass} resize-y min-h-[120px]`}

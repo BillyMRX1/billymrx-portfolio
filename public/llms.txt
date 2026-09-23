@@ -1,8 +1,8 @@
 # Brilian Ade Putra (Billy)
 
-> Personal portfolio of Brilian Ade Putra, an AI Engineer at Honda Motor Co., Ltd. in Tokyo, Japan. He designs and deploys production machine learning systems: ML pipelines, generative AI applications, and data platforms at Honda's AdvanceAI Strategy Planning Division.
+> Brilian Ade Putra (Billy) is an AI and software engineer in Tokyo. He builds AI assistants and integrations for websites, apps, and internal tools.
 
-Site: https://billymrx.com (single page: about, experience, projects, writing, contact)
+Site: https://billymrx.com (single page: about, services, experience, projects, writing, contact)
 
 ## Who
 
@@ -10,6 +10,13 @@ Site: https://billymrx.com (single page: about, experience, projects, writing, c
 - Role: AI Engineer, Honda Motor Co., Ltd., AdvanceAI Strategy Planning Division, Tokyo (March 2025 to present)
 - Background: 4+ years across production ML, Android/mobile engineering, and full stack development; shipped products used by millions of users
 - Skills: Python, TypeScript, Kotlin, Dart; PyTorch, TensorFlow, LangChain, RAG; Azure AI, AWS Bedrock, OpenAI; Next.js, React, FastAPI, PostgreSQL
+
+## Services
+
+- Featured service: a document assistant pilot. Gives staff or customers a simpler way to find information in manuals, policies, and product documentation, with answers that reference their supporting documents.
+- Pilot scope: one agreed document collection (format and size limits agreed before work begins), one web interface, answers with references to supporting documents, handling for unanswered or ambiguous questions, evaluation against an agreed question set, and setup and handover notes.
+- Pricing: fixed-price pilot after a short scoping conversation. Delivery timing, document limits, and any ongoing software costs are agreed before work starts.
+- More at https://billymrx.com/#services
 
 ## Experience
 

@@ -10,11 +10,11 @@ const siteUrl = "https://billymrx.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
-    template: "%s | Brilian Ade Putra · AI Engineer",
+    default: "Brilian Ade Putra (Billy) | AI & Software Engineer",
+    template: "%s | Brilian Ade Putra",
   },
   description:
-    "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
+    "AI assistants and software integrations for websites, apps, and internal tools. Work directly with Billy on a focused implementation project.",
   keywords: [
     "AI Engineer",
     "Machine Learning Engineer",
@@ -23,13 +23,16 @@ export const metadata: Metadata = {
     "Software Engineer",
     "Full Stack Developer",
     "Tokyo Japan",
-    "Honda AI",
     "Next.js",
     "Python",
     "Product Strategy",
     "Brilian Ade Putra",
     "Billy",
     "BillyMRX",
+    "document AI assistant",
+    "RAG developer",
+    "AI integration",
+    "LLM integration",
   ],
   icons: {
     icon: "/favicon.ico",
@@ -54,9 +57,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Brilian Ade Putra · AI Engineer",
-    title: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
+    title: "Brilian Ade Putra (Billy) | AI & Software Engineer",
     description:
-      "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
+      "AI assistants and software integrations for websites, apps, and internal tools. Work directly with Billy on a focused implementation project.",
     images: [
       {
         url: `${siteUrl}/avatar.jpg`,
@@ -68,9 +71,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brilian Ade Putra (Billy) · AI Engineer & Software Developer in Tokyo",
+    title: "Brilian Ade Putra (Billy) | AI & Software Engineer",
     description:
-      "AI Engineer at Honda Japan crafting intelligent products with machine learning, data platforms, and production ready software in Tokyo, Japan.",
+      "AI assistants and software integrations for websites, apps, and internal tools. Work directly with Billy on a focused implementation project.",
     images: [`${siteUrl}/avatar.jpg`],
     creator: "@BillyMRX",
   },
@@ -132,7 +135,7 @@ const structuredData = {
       seeks: {
         "@type": "Demand",
         description:
-          "Job opportunities, freelance projects, and professional networking in Japan",
+          "Job opportunities, AI and software implementation projects, and professional networking in Japan",
       },
     },
     {

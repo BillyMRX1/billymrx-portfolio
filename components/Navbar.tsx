@@ -13,6 +13,8 @@ const navLinks = [
 
 const ctaLink = { label: "Discuss a project", href: "#contact" };
 
+const resumeLink = { label: "Resume", href: "/resume.pdf" };
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = "primary-mobile-menu";
@@ -57,10 +59,19 @@ export default function Navbar() {
           </a>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <NavLink key={link.href} link={link} onClick={handleNavClick} />
             ))}
+            <a
+              href={resumeLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Resume (PDF, opens in a new tab)"
+              className="rounded-full border border-[var(--separator)] px-4 py-2 text-[0.8rem] font-medium text-[var(--text-secondary)] no-underline transition-colors duration-200 hover:text-[var(--accent)] hover:border-[var(--accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
+            >
+              {resumeLink.label}
+            </a>
             <a
               href={ctaLink.href}
               onClick={(e) => handleNavClick(e, ctaLink.href)}
@@ -118,6 +129,16 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href={resumeLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Resume (PDF, opens in a new tab)"
+              onClick={() => setMenuOpen(false)}
+              className="py-3 text-base font-medium text-[var(--text-secondary)] no-underline"
+            >
+              {resumeLink.label}
+            </a>
             <a
               href={ctaLink.href}
               onClick={(e) => handleNavClick(e, ctaLink.href)}

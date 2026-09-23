@@ -356,7 +356,7 @@ export default function ContactForm() {
         />
       </div>
 
-      <p className="text-[0.8rem] text-[var(--text-tertiary)]">
+      <p className="text-[0.8rem] text-[var(--text-secondary)]">
         Please don&apos;t include confidential documents or credentials.
       </p>
 

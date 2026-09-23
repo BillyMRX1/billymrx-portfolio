@@ -59,7 +59,7 @@ export default async function Projects() {
                 }`}
               >
                 {getOwnershipLabel(project.type) && (
-                  <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+                  <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-[var(--text-secondary)]">
                     {getOwnershipLabel(project.type)}
                   </p>
                 )}

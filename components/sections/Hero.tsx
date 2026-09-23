@@ -93,7 +93,7 @@ export default function Hero(): React.JSX.Element {
 
           <motion.p
             variants={fadeUp}
-            className="mt-4 text-[14px] text-[var(--text-tertiary)]"
+            className="mt-4 text-[14px] text-[var(--text-secondary)]"
           >
             Remote collaboration in English.
           </motion.p>
